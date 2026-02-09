@@ -37,9 +37,9 @@
 
 **Project:** Bumble: Crossed Paths
 
-This project focuses on designing and implementing user interface improvements for a Bumble-inspired dating application, with emphasis on creating distinctive, accessible, and delightful user experiences.
+This project focuses on designing and implementing a user interface improvement for Bumble called Crossed Paths, which allows users to see potential matches after they leave a location in which they crossed paths.
 
-**Design Brief:** [[Link to your design brief document - add link here](https://docs.google.com/document/d/19csQiD_025vBT5wkUWzUcsdl-jukD0Yc2m0tIrqWkVA/edit?usp=sharing)]
+**Design Brief:** [[Link to your design brief document](https://docs.google.com/document/d/19csQiD_025vBT5wkUWzUcsdl-jukD0Yc2m0tIrqWkVA/edit?usp=sharing)]
 
 ### Project Goals
 - Create production-grade frontend interfaces
@@ -56,15 +56,9 @@ This project focuses on designing and implementing user interface improvements f
 **Branching Strategy:**
 - `main` branch: production-ready, stable code
 - Feature branches: `feature/[feature-name]` for new features
-- Bug fixes: `fix/[bug-description]` for bug fixes
-- Experiments: `experiment/[description]` for trying new ideas
 
 **Commit Practices:**
 - Frequent, atomic commits with descriptive messages
-- Each commit includes co-authorship credit to Claude Code:
-  ```
-  Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
-  ```
 - Follow conventional commit format when appropriate:
   - `feat:` for new features
   - `fix:` for bug fixes
@@ -125,7 +119,7 @@ This project focuses on designing and implementing user interface improvements f
 
 **Current Phase:** Initial Setup
 
-**Last Updated:** February 8, 2026
+**Last Updated:** February 9, 2026
 
 ---
 
