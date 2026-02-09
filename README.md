@@ -39,7 +39,7 @@
 
 This project focuses on designing and implementing a user interface improvement for Bumble called Crossed Paths, which allows users to see potential matches after they leave a location in which they crossed paths.
 
-**Design Brief:** [[Link to your design brief document](https://docs.google.com/document/d/19csQiD_025vBT5wkUWzUcsdl-jukD0Yc2m0tIrqWkVA/edit?usp=sharing)]
+**Design Brief:** [[Link to design brief document](https://docs.google.com/document/d/19csQiD_025vBT5wkUWzUcsdl-jukD0Yc2m0tIrqWkVA/edit?usp=sharing)]
 
 ### Project Goals
 - Create production-grade frontend interfaces
