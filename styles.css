@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Albert Sans', sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* Phone frame container */
+.phone-frame {
+  width: 432px;
+  height: 932px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 54px;
+  left: 25px;
+  width: 391px;
+}
+
+.header-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.6px;
+  line-height: 50px;
+}
+
+.header-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.32px;
+  line-height: 1.4;
+}
+
+/* Crossed Paths Widget */
+.crossed-paths-widget {
+  position: absolute;
+  top: 181px;
+  left: 25px;
+  width: 382px;
+  height: 79px;
+  background-color: #ffdb5b;
+  border-radius: 15px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.crossed-paths-widget:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 219, 91, 0.4);
+}
+
+.crossed-paths-contents {
+  position: absolute;
+  top: 15px;
+  left: 21px;
+  width: 352px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crossed-paths-photo {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+
+.crossed-paths-photo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.crossed-paths-text {
+  width: 231px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.crossed-paths-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.32px;
+}
+
+.crossed-paths-description {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: 1.3;
+}
+
+.crossed-paths-chevron {
+  width: 29px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Recommended Section */
+.recommended-section {
+  position: absolute;
+  top: 291px;
+  left: 0;
+  right: 0;
+  padding-left: 25px;
+  overflow: hidden;
+}
+
+.recommended-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+  margin-bottom: 6px;
+}
+
+.recommended-cards {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding-right: 25px;
+  padding-bottom: 10px;
+}
+
+.recommended-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-card {
+  flex-shrink: 0;
+  border: 1px solid #e4e4e4;
+  border-radius: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  padding: 10px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.profile-card-image {
+  width: 275px;
+  height: 387px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.profile-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.profile-card-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.32px;
+}
+
+.heart-button {
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s ease;
+}
+
+.heart-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Bottom Navigation */
+.nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 94px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 26px 17px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 52px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #7e7e7e;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav-label--active {
+  font-weight: 600;
+  color: #5b5b5b;
+}

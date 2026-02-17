@@ -1,0 +1,381 @@
+/* Crossed Paths Page Styles */
+
+/* Header */
+.cp-header {
+  position: absolute;
+  top: 54px;
+  left: 25px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.cp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cp-back-button {
+  width: 29px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cp-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.6px;
+  line-height: normal;
+}
+
+.cp-header-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cp-icon-button {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Scrollable content */
+.cp-scroll-content {
+  position: absolute;
+  top: 121px;
+  left: 0;
+  right: 0;
+  bottom: 94px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Matches Section */
+.cp-matches-section {
+  background-color: #fff1bf;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cp-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+  line-height: normal;
+}
+
+.cp-cards-row {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.cp-cards-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Person Card */
+.cp-person-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  padding: 10px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cp-card-image {
+  width: 268px;
+  height: 324px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cp-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Blurred potential match image */
+.cp-card-image--blurred img {
+  filter: blur(15px);
+}
+
+.cp-reveal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-reveal-button {
+  background: rgba(255, 255, 255, 0.34);
+  border: none;
+  border-radius: 21px;
+  padding: 10px 20px;
+  width: 187px;
+  height: 42px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cp-reveal-button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.cp-card-name {
+  padding: 0 5px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.cp-card-name p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.32px;
+}
+
+.cp-card-location {
+  background-color: #ffdb5b;
+  border-radius: 5px;
+  padding: 10px 5px 10px 10px;
+}
+
+.cp-card-location p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: normal;
+}
+
+.cp-card-location strong {
+  font-weight: 700;
+}
+
+.cp-card-tags {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cp-tag {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.24px;
+  padding: 5px 10px 5px 15px;
+  border-radius: 15px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.cp-tag-more {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+}
+
+/* Potential Matches Section */
+.cp-potential-section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ===== Profile Overlay ===== */
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 100;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.profile-overlay.active {
+  background: rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+}
+
+.profile-overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+}
+
+.profile-overlay.active .profile-overlay-content {
+  transform: translateY(0);
+}
+
+/* Full Profile Card */
+.profile-card-full {
+  position: absolute;
+  top: 130px;
+  left: 15px;
+  width: 401px;
+  height: 675px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff1bf;
+}
+
+.profile-card-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Person Info (overlaid on card) */
+.profile-info {
+  position: absolute;
+  top: 504px;
+  left: 54px;
+  width: 323px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.profile-info-name {
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.6px;
+  line-height: normal;
+}
+
+.profile-info-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-info-tags-row {
+  display: flex;
+  gap: 8px;
+}
+
+.profile-info-location {
+  background: #ffdb5b;
+  border-radius: 10px;
+  padding: 20px 25px;
+}
+
+.profile-info-location p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.32px;
+  line-height: normal;
+}
+
+.profile-info-location strong {
+  font-weight: 700;
+}
+
+/* Message Button */
+.profile-message-button {
+  position: absolute;
+  top: 729px;
+  left: 54px;
+  width: 184px;
+  height: 50px;
+  background: #fff;
+  border: none;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+  transition: background 0.15s ease;
+}
+
+.profile-message-button:hover {
+  background: #f0f0f0;
+}
+
+/* Staggered fade-in for profile elements */
+.profile-overlay.active .profile-card-full {
+  animation: fadeSlideUp 0.5s 0.15s both ease-out;
+}
+
+.profile-overlay.active .profile-info {
+  animation: fadeSlideUp 0.45s 0.3s both ease-out;
+}
+
+.profile-overlay.active .profile-message-button {
+  animation: fadeSlideUp 0.4s 0.4s both ease-out;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
