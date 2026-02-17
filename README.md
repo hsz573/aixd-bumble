@@ -115,11 +115,29 @@ This project focuses on designing and implementing a user interface improvement 
 - Can clone fresh copy if local repository becomes corrupted
 - GitHub history provides complete audit trail
 
+## Prototype
+
+**Live Demo:** [https://hsz573.github.io/aixd-bumble/](https://hsz573.github.io/aixd-bumble/)
+
+**Tech Stack:** HTML, CSS, JavaScript (static site, no build step required)
+
+**Figma Designs:** [AIXD Project 2](https://www.figma.com/design/I5ZpdUYMiBcSPUeH2jv6My/AIXD-Project-2)
+
+### Screens Implemented
+
+1. **Discover Entry** (`index.html`) — Main Bumble discover page with the Crossed Paths widget and horizontally scrollable recommended profiles
+2. **Crossed Paths List View** (`crossed-paths.html`) — Shows matched and potential matched users you've crossed paths with, organized by Matches (clear photos) and Potential Matches (blurred photos with "Click to Reveal")
+3. **Profile Overlay** (within `crossed-paths.html`) — Expanded profile view for a match (Mark), featuring interest tags, crossed paths location, and a Message button. Opens with a smooth slide-up animation
+
+### Running Locally
+
+Open `index.html` in any browser — no server or dependencies required.
+
 ## Project Status
 
-**Current Phase:** Initial Setup
+**Current Phase:** Prototype Implementation
 
-**Last Updated:** February 9, 2026
+**Last Updated:** February 17, 2026
 
 ---
 
