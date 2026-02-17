@@ -22,6 +22,7 @@
       <div class="crossed-paths-contents">
         <div class="crossed-paths-photo">
           <img src="assets/crossed-paths-avatar.png" alt="Crossed paths user" />
+          <span class="notif-dot" id="notifDot"></span>
         </div>
         <div class="crossed-paths-text">
           <p class="crossed-paths-title">Crossed Paths</p>
@@ -65,6 +66,65 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Notification Overlay -->
+    <div class="notif-overlay" id="notifOverlay">
+      <div class="notif-modal" id="notifModal">
+        <!-- Close button -->
+        <button class="notif-close" aria-label="Close notification" onclick="closeNotification()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L13 13M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <!-- Bee illustration -->
+        <div class="notif-illustration">
+          <svg width="290" height="101" viewBox="0 0 290 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left bee -->
+            <g transform="translate(18, 20) rotate(-41, 27, 27)">
+              <!-- Body -->
+              <ellipse cx="27" cy="30" rx="14" ry="10" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+              <!-- Stripes -->
+              <line x1="22" y1="23" x2="22" y2="37" stroke="#222" stroke-width="1.5"/>
+              <line x1="27" y1="21" x2="27" y2="39" stroke="#222" stroke-width="1.5"/>
+              <!-- Head -->
+              <circle cx="38" cy="28" r="6" fill="#222"/>
+              <!-- Wing top -->
+              <ellipse cx="22" cy="20" rx="8" ry="5" fill="white" stroke="#222" stroke-width="1"/>
+              <!-- Wing bottom -->
+              <ellipse cx="22" cy="36" rx="7" ry="4" fill="white" stroke="#222" stroke-width="1"/>
+              <!-- Antenna -->
+              <path d="M42 23 Q46 16 50 18" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="50" cy="18" r="2" fill="#222"/>
+              <path d="M42 25 Q48 20 52 24" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="52" cy="24" r="2" fill="#222"/>
+            </g>
+            <!-- Curved flight path with heart -->
+            <path d="M75 40 Q100 80 130 50 Q140 35 145 42 Q150 35 160 50 Q190 80 215 40" stroke="#FFDB5B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Right bee -->
+            <g transform="translate(230, 55) rotate(142, 27, 27)">
+              <!-- Body -->
+              <ellipse cx="27" cy="30" rx="14" ry="10" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+              <!-- Stripes -->
+              <line x1="22" y1="23" x2="22" y2="37" stroke="#222" stroke-width="1.5"/>
+              <line x1="27" y1="21" x2="27" y2="39" stroke="#222" stroke-width="1.5"/>
+              <!-- Head -->
+              <circle cx="38" cy="28" r="6" fill="#222"/>
+              <!-- Wing top -->
+              <ellipse cx="22" cy="20" rx="8" ry="5" fill="white" stroke="#222" stroke-width="1"/>
+              <!-- Wing bottom -->
+              <ellipse cx="22" cy="36" rx="7" ry="4" fill="white" stroke="#222" stroke-width="1"/>
+              <!-- Antenna -->
+              <path d="M42 23 Q46 16 50 18" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="50" cy="18" r="2" fill="#222"/>
+              <path d="M42 25 Q48 20 52 24" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="52" cy="24" r="2" fill="#222"/>
+            </g>
+          </svg>
+        </div>
+        <p class="notif-text">You just Crossed Paths with a match!</p>
+        <a href="crossed-paths.html" class="notif-button">See all Crossed Paths</a>
       </div>
     </div>
 
@@ -117,5 +177,16 @@
       </a>
     </nav>
   </div>
+  <script>
+    // Show notification after a short delay
+    setTimeout(function() {
+      document.getElementById('notifOverlay').classList.add('active');
+    }, 2500);
+
+    function closeNotification() {
+      document.getElementById('notifOverlay').classList.remove('active');
+      document.getElementById('notifDot').classList.add('visible');
+    }
+  </script>
 </body>
 </html>
