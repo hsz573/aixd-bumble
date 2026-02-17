@@ -70,11 +70,20 @@
         <h2 class="cp-section-title">Potential Matches</h2>
         <div class="cp-cards-row">
           <!-- Potential match 1 -->
-          <div class="cp-person-card">
+          <div class="cp-person-card" data-potential="1">
             <div class="cp-card-image cp-card-image--blurred">
-              <img src="assets/potential1.png" alt="Potential match" />
+              <img src="assets/potential1.png" alt="Potential match" data-revealed-src="assets/potential1-revealed.png" />
               <div class="cp-reveal-overlay">
-                <button class="cp-reveal-button">Click to Reveal</button>
+                <button class="cp-reveal-button" onclick="revealMatch(this)">Click to Reveal</button>
+              </div>
+              <div class="cp-lock-overlay">
+                <div class="cp-lock-icon">
+                  <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="11" width="18" height="14" rx="3" stroke="#000" stroke-width="1.5" fill="none"/>
+                    <path d="M5 11V7C5 4.23858 7.23858 2 10 2C12.7614 2 15 4.23858 15 7V11" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="10" cy="18" r="2" fill="#000"/>
+                  </svg>
+                </div>
               </div>
             </div>
             <div class="cp-card-name">
@@ -91,11 +100,20 @@
           </div>
 
           <!-- Potential match 2 -->
-          <div class="cp-person-card">
+          <div class="cp-person-card" data-potential="2">
             <div class="cp-card-image cp-card-image--blurred">
               <img src="assets/potential2.png" alt="Potential match" />
               <div class="cp-reveal-overlay">
-                <button class="cp-reveal-button">Click to Reveal</button>
+                <button class="cp-reveal-button" onclick="revealMatch(this)">Click to Reveal</button>
+              </div>
+              <div class="cp-lock-overlay">
+                <div class="cp-lock-icon">
+                  <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="11" width="18" height="14" rx="3" stroke="#000" stroke-width="1.5" fill="none"/>
+                    <path d="M5 11V7C5 4.23858 7.23858 2 10 2C12.7614 2 15 4.23858 15 7V11" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="10" cy="18" r="2" fill="#000"/>
+                  </svg>
+                </div>
               </div>
             </div>
             <div class="cp-card-name">
@@ -110,6 +128,28 @@
           </div>
         </div>
       </section>
+    </div>
+
+    <!-- Reveal Confirmation Popup -->
+    <div class="reveal-confirm-overlay" id="revealConfirmOverlay" onclick="closeRevealConfirm(event)">
+      <div class="reveal-confirm-modal">
+        <p class="reveal-confirm-text">Are you Sure? You only have 1 free Potential Match Reveal this month.</p>
+        <button class="reveal-confirm-yes" onclick="confirmReveal()">Yes</button>
+        <button class="reveal-confirm-no" onclick="closeRevealConfirm(event, true)">No</button>
+        <a href="#" class="reveal-confirm-upgrade">Upgrade now to reveal more</a>
+      </div>
+    </div>
+
+    <!-- Join to Unlock Bottom Sheet -->
+    <div class="unlock-overlay" id="unlockOverlay" onclick="closeUnlock(event)">
+      <div class="unlock-sheet">
+        <div class="unlock-content">
+          <p class="unlock-title">Join to Unlock</p>
+          <p class="unlock-subtitle">See the full profiles of potential matches you've Crossed Paths with</p>
+        </div>
+        <button class="unlock-premium-button">Get Bumble Premium</button>
+        <a href="#" class="unlock-not-now" onclick="closeUnlock(event, true)">Not now</a>
+      </div>
     </div>
 
     <!-- Profile Overlay -->
@@ -164,13 +204,149 @@
         </div>
 
         <!-- Message Button -->
-        <button class="profile-message-button">
+        <button class="profile-message-button" onclick="openChat()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z" fill="black"/>
           </svg>
           <span>Message</span>
         </button>
       </div>
+    </div>
+
+    <!-- Potential Match Profile Overlay -->
+    <div class="profile-overlay" id="potentialProfileOverlay" onclick="closePotentialProfile(event)">
+      <div class="profile-overlay-content" id="potentialProfileContent">
+        <!-- Header -->
+        <div class="cp-header" style="position: absolute; z-index: 12;">
+          <div class="cp-header-left">
+            <button class="cp-back-button" aria-label="Go back" onclick="closePotentialProfile(event, true)">
+              <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <h1 class="cp-title">Crossed Paths</h1>
+          </div>
+          <div class="cp-header-icons">
+            <button class="cp-icon-button" aria-label="Map view">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 3L9 5.5L3 3V19L9 16.5L15 19L21 16.5V3L15 5.5V19" stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                <path d="M9 5.5V16.5" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="cp-icon-button" aria-label="Settings">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="black" stroke-width="1.5"/>
+                <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-card-full">
+          <img src="assets/potential1-full.png" alt="Potential match" class="profile-card-full-img" />
+        </div>
+
+        <!-- Person Info -->
+        <div class="profile-info">
+          <p class="profile-info-name">???, 24</p>
+          <div class="profile-info-tags">
+            <div class="profile-info-tags-row">
+              <span class="cp-tag">sports</span>
+              <span class="cp-tag">hiking</span>
+              <span class="cp-tag">japanese food</span>
+            </div>
+          </div>
+          <div class="profile-info-location">
+            <p>You crossed paths with this potential match at <strong>PNC Park!</strong></p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="profile-action-buttons">
+          <button class="profile-not-interested-button" onclick="closePotentialProfile(event, true)">Not Interested</button>
+          <button class="profile-like-button" onclick="sendLike()">Like</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Screen -->
+    <div class="chat-overlay" id="chatOverlay">
+      <!-- Back button -->
+      <div class="chat-back">
+        <button class="cp-back-button" aria-label="Go back" onclick="closeChat()">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Chat content -->
+      <div class="chat-content">
+        <div class="chat-profile-photo">
+          <img src="assets/mark-circle.png" alt="Mark" />
+        </div>
+        <div class="chat-profile-info">
+          <p class="chat-profile-name">Mark, 23</p>
+          <p class="chat-profile-location">You Crossed Paths at <strong>KLVN Coffee Shop.</strong></p>
+        </div>
+        <div class="chat-suggestion">
+          <p class="chat-suggestion-title">Opening move suggestion...</p>
+          <p class="chat-suggestion-text">What's your favorite coffee shop around Pittsburgh?</p>
+          <button class="chat-suggestion-send">Send</button>
+        </div>
+      </div>
+
+      <!-- Message input -->
+      <div class="chat-input-bar">
+        <div class="chat-input-field">
+          <input type="text" placeholder="Send a message" />
+        </div>
+        <button class="chat-send-button" aria-label="Send message">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 14V2M8 2L2 8M8 2L14 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Like Sent Screen -->
+    <div class="like-sent-overlay" id="likeSentOverlay">
+      <!-- Header -->
+      <div class="cp-header" style="position: absolute; z-index: 12;">
+        <div class="cp-header-left">
+          <button class="cp-back-button" aria-label="Go back" onclick="closeLikeSent()">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <h1 class="cp-title">Crossed Paths</h1>
+        </div>
+        <div class="cp-header-icons">
+          <button class="cp-icon-button" aria-label="Map view">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 3L9 5.5L3 3V19L9 16.5L15 19L21 16.5V3L15 5.5V19" stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+              <path d="M9 5.5V16.5" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Centered content -->
+      <div class="like-sent-content">
+        <div class="like-sent-image-wrapper">
+          <img src="assets/potential1-circle.png" alt="Liked user" class="like-sent-avatar" />
+          <div class="like-sent-heart-badge">
+            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 19.35L9.55 18.03C4.4 13.36 1 10.28 1 6.5C1 3.42 3.42 1 6.5 1C8.24 1 9.91 1.81 11 3.09C12.09 1.81 13.76 1 15.5 1C18.58 1 21 3.42 21 6.5C21 10.28 17.6 13.36 12.45 18.04L11 19.35Z" fill="black"/>
+            </svg>
+          </div>
+        </div>
+        <p class="like-sent-text">You sent a Like!</p>
+      </div>
+
+      <!-- Confetti particles -->
+      <div class="like-sent-confetti" id="likeSentConfetti"></div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -235,6 +411,168 @@
         const overlay = document.getElementById('profileOverlay');
         overlay.classList.remove('active');
         document.querySelector('.cp-scroll-content').style.overflow = '';
+      }
+    }
+
+    var pendingRevealButton = null;
+
+    function revealMatch(button) {
+      // Store which button was clicked, then show confirmation
+      pendingRevealButton = button;
+      document.getElementById('revealConfirmOverlay').classList.add('active');
+    }
+
+    function closeRevealConfirm(event, forceClose) {
+      if (forceClose || event.target === document.getElementById('revealConfirmOverlay')) {
+        document.getElementById('revealConfirmOverlay').classList.remove('active');
+        pendingRevealButton = null;
+      }
+    }
+
+    function confirmReveal() {
+      if (!pendingRevealButton) return;
+
+      var card = pendingRevealButton.closest('.cp-person-card');
+      var imageContainer = card.querySelector('.cp-card-image');
+      var img = imageContainer.querySelector('img');
+
+      // Close the confirmation popup
+      document.getElementById('revealConfirmOverlay').classList.remove('active');
+
+      // Unblur the clicked card
+      imageContainer.classList.remove('cp-card-image--blurred');
+      imageContainer.classList.add('cp-card-image--revealed');
+
+      // Swap to revealed image if available
+      if (img.dataset.revealedSrc) {
+        img.src = img.dataset.revealedSrc;
+      }
+
+      // Hide the reveal button
+      var revealOverlay = imageContainer.querySelector('.cp-reveal-overlay');
+      revealOverlay.style.display = 'none';
+
+      // Lock all other potential match cards
+      var allCards = document.querySelectorAll('.cp-person-card[data-potential]');
+      allCards.forEach(function(otherCard) {
+        if (otherCard !== card) {
+          otherCard.classList.add('cp-card--locked');
+          var otherReveal = otherCard.querySelector('.cp-reveal-overlay');
+          if (otherReveal) otherReveal.style.display = 'none';
+          var otherLock = otherCard.querySelector('.cp-lock-overlay');
+          if (otherLock) otherLock.classList.add('visible');
+        }
+      });
+
+      pendingRevealButton = null;
+
+      // Make the revealed card clickable to open profile
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function() {
+        openPotentialProfile();
+      });
+
+      // Add click handlers to locked cards
+      allCards.forEach(function(otherCard) {
+        if (otherCard !== card && otherCard.classList.contains('cp-card--locked')) {
+          otherCard.addEventListener('click', function() {
+            openUnlock();
+          });
+        }
+      });
+    }
+
+    function openPotentialProfile() {
+      var overlay = document.getElementById('potentialProfileOverlay');
+      overlay.classList.add('active');
+      document.querySelector('.cp-scroll-content').style.overflow = 'hidden';
+    }
+
+    function closePotentialProfile(event, forceClose) {
+      if (forceClose || event.target === document.getElementById('potentialProfileOverlay')) {
+        var overlay = document.getElementById('potentialProfileOverlay');
+        overlay.classList.remove('active');
+        document.querySelector('.cp-scroll-content').style.overflow = '';
+      }
+    }
+
+    function openChat() {
+      document.getElementById('chatOverlay').classList.add('active');
+    }
+
+    function closeChat() {
+      document.getElementById('chatOverlay').classList.remove('active');
+    }
+
+    function openUnlock() {
+      document.getElementById('unlockOverlay').classList.add('active');
+    }
+
+    function closeUnlock(event, forceClose) {
+      if (forceClose || event.target === document.getElementById('unlockOverlay')) {
+        document.getElementById('unlockOverlay').classList.remove('active');
+      }
+    }
+
+    function sendLike() {
+      // Close the potential profile overlay instantly
+      var potentialOverlay = document.getElementById('potentialProfileOverlay');
+      potentialOverlay.classList.remove('active');
+
+      // Show the like sent screen
+      var likeSentOverlay = document.getElementById('likeSentOverlay');
+      likeSentOverlay.classList.add('active');
+
+      // Spawn confetti
+      spawnConfetti();
+    }
+
+    function closeLikeSent() {
+      var overlay = document.getElementById('likeSentOverlay');
+      overlay.classList.remove('active');
+      document.querySelector('.cp-scroll-content').style.overflow = '';
+      // Clear confetti
+      document.getElementById('likeSentConfetti').innerHTML = '';
+    }
+
+    function spawnConfetti() {
+      var container = document.getElementById('likeSentConfetti');
+      container.innerHTML = '';
+      var colors = ['#ffdb5b', '#ff6b6b', '#ffa502', '#ff4757', '#ffd32a', '#fff200', '#ffb8b8', '#f8a5c2'];
+      var shapes = ['circle', 'square', 'heart'];
+
+      for (var i = 0; i < 40; i++) {
+        var particle = document.createElement('div');
+        particle.className = 'confetti-particle';
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var shape = shapes[Math.floor(Math.random() * shapes.length)];
+        var size = 6 + Math.random() * 8;
+        var left = 10 + Math.random() * 80;
+        var delay = Math.random() * 0.6;
+        var duration = 1.2 + Math.random() * 1;
+        var drift = -60 + Math.random() * 120;
+
+        particle.style.left = left + '%';
+        particle.style.top = '40%';
+        particle.style.animationDelay = delay + 's';
+        particle.style.setProperty('--drift', drift + 'px');
+        particle.style.setProperty('--duration', duration + 's');
+
+        if (shape === 'heart') {
+          particle.innerHTML = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 12 11"><path d="M6 10.5L5.175 9.753C2.1 6.972 0 5.064 0 2.75C0 0.842 1.512 -0.5 3.3 -0.5C4.308 -0.5 5.268 0.003 6 0.831C6.732 0.003 7.692 -0.5 8.7 -0.5C10.488 -0.5 12 0.842 12 2.75C12 5.064 9.9 6.972 6.825 9.76L6 10.5Z" fill="' + color + '"/></svg>';
+        } else {
+          particle.style.width = size + 'px';
+          particle.style.height = size + 'px';
+          particle.style.background = color;
+          if (shape === 'circle') {
+            particle.style.borderRadius = '50%';
+          } else {
+            particle.style.borderRadius = '2px';
+            particle.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+          }
+        }
+
+        container.appendChild(particle);
       }
     }
   </script>
