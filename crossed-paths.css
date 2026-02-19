@@ -836,6 +836,41 @@
   background: #888;
 }
 
+.chat-sent-bubble {
+  display: none;
+  position: absolute;
+  bottom: 90px;
+  right: 36px;
+  max-width: 242px;
+  background: #e8e8e8;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.chat-sent-bubble.visible {
+  display: block;
+  animation: bubbleFadeIn 0.3s ease-out;
+}
+
+.chat-sent-bubble p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.32px;
+  line-height: normal;
+}
+
+@keyframes bubbleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===== Like Sent Screen ===== */
 .like-sent-overlay {
   position: absolute;
@@ -912,6 +947,30 @@
 
 .like-sent-overlay.active .like-sent-text {
   animation: textFadeUp 0.5s 0.5s both ease-out;
+}
+
+.like-sent-back {
+  width: 261px;
+  height: 50px;
+  background: #ffdb5b;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  opacity: 0;
+}
+
+.like-sent-back:hover {
+  background: #ffe074;
+}
+
+.like-sent-overlay.active .like-sent-back {
+  animation: textFadeUp 0.5s 0.7s both ease-out;
 }
 
 /* Confetti */
