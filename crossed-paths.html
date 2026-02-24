@@ -290,13 +290,10 @@
           <p class="chat-profile-name">Mark, 23</p>
           <p class="chat-profile-location">You Crossed Paths at <strong>KLVN Coffee Shop.</strong></p>
         </div>
-        <div class="chat-suggestion" id="chatSuggestion">
+        <div class="chat-suggestion">
           <p class="chat-suggestion-title">Opening move suggestion...</p>
           <p class="chat-suggestion-text">What's your favorite coffee shop around Pittsburgh?</p>
-          <button class="chat-suggestion-send" onclick="sendOpeningMove()">Send</button>
-        </div>
-        <div class="chat-sent-bubble" id="chatSentBubble">
-          <p>What's your favorite coffee shop around Pittsburgh?</p>
+          <button class="chat-suggestion-send">Send</button>
         </div>
       </div>
 
@@ -346,7 +343,6 @@
           </div>
         </div>
         <p class="like-sent-text">You sent a Like!</p>
-        <button class="like-sent-back" onclick="closeLikeSent()">Back to Crossed Paths</button>
       </div>
 
       <!-- Confetti particles -->
@@ -506,14 +502,6 @@
 
     function closeChat() {
       document.getElementById('chatOverlay').classList.remove('active');
-      // Reset chat state
-      document.getElementById('chatSuggestion').style.display = '';
-      document.getElementById('chatSentBubble').classList.remove('visible');
-    }
-
-    function sendOpeningMove() {
-      document.getElementById('chatSuggestion').style.display = 'none';
-      document.getElementById('chatSentBubble').classList.add('visible');
     }
 
     function openUnlock() {
