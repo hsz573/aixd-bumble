@@ -1,5 +1,352 @@
 /* Crossed Paths Page Styles */
 
+/* ── Receiver POV: Lock Screen (pure CSS, no external assets) ── */
+.lock-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  font-family: 'Albert Sans', sans-serif;
+  /* iOS-style gradient wallpaper */
+  background: linear-gradient(165deg,
+    #e8b0a8 0%,
+    #c8a0cc 28%,
+    #8ab4d8 60%,
+    #3a7ab8 100%
+  );
+}
+
+/* ── Status bar ── */
+.lock-statusbar {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 28px;
+  gap: 7px;
+}
+
+/* Cellular signal: 4 bars */
+.lock-signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.lock-signal span {
+  display: block;
+  width: 3px;
+  background: white;
+  border-radius: 1px;
+}
+.lock-signal span:nth-child(1) { height: 30%; }
+.lock-signal span:nth-child(2) { height: 52%; }
+.lock-signal span:nth-child(3) { height: 74%; }
+.lock-signal span:nth-child(4) { height: 100%; }
+
+/* WiFi icon */
+.lock-wifi-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5px;
+  height: 12px;
+  justify-content: flex-end;
+}
+.lock-wifi-icon span {
+  display: block;
+  border: 1.5px solid white;
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+}
+.lock-wifi-icon span:nth-child(1) { width: 10px; height: 5px; }
+.lock-wifi-icon span:nth-child(2) { width: 6px;  height: 3px; }
+.lock-wifi-icon span:nth-child(3) { width: 2px;  height: 2px; border-radius: 50%; border: none; background: white; }
+
+/* Battery */
+.lock-battery {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.lock-battery-body {
+  width: 22px;
+  height: 11px;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  border-radius: 3px;
+  padding: 1.5px;
+}
+.lock-battery-fill {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 1px;
+}
+.lock-battery-nub {
+  width: 2px;
+  height: 5px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 0 1px 1px 0;
+}
+
+/* ── Date + Time ── */
+.lock-date {
+  position: absolute;
+  top: 82px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+}
+
+.lock-clock {
+  position: absolute;
+  top: 108px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 86px;
+  font-weight: 300;
+  letter-spacing: -3px;
+  line-height: 1;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.12);
+}
+
+/* ── Lock screen widgets ── */
+.lock-widgets {
+  position: absolute;
+  top: 248px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Weather text widget */
+.lock-weather {
+  flex: 1;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 10px 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 72px;
+  justify-content: center;
+}
+.lock-weather-top {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.lock-weather-desc { font-size: 11px; opacity: 0.85; }
+.lock-weather-range { font-size: 10px; opacity: 0.75; }
+
+/* Circular widgets */
+.lock-circles {
+  display: flex;
+  gap: 10px;
+}
+
+.lock-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 1px;
+}
+
+/* UV index circle — arc drawn in SVG */
+.lock-circle-uv {
+  position: relative;
+}
+.lock-circle-uv svg {
+  position: absolute;
+  inset: 0;
+}
+.lock-circle-uv-num {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2px;
+}
+.lock-circle-uv-label {
+  font-size: 9px;
+  opacity: 0.75;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.3px;
+}
+
+/* Alarm time circle */
+.lock-circle-alarm-icon { font-size: 10px; line-height: 1; }
+.lock-circle-alarm-time { font-size: 16px; font-weight: 600; line-height: 1.1; }
+.lock-circle-alarm-period { font-size: 9px; opacity: 0.8; }
+
+/* ── Bumble notification ── */
+.lock-notif {
+  position: absolute;
+  bottom: 108px;
+  left: 20px;
+  right: 20px;
+  border-radius: 24px;
+  overflow: hidden;
+  /* Hidden by default — shown via JS trigger */
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.lock-notif.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Figma two-layer frosted glass background (node 243-1242):
+   Layer 1: rgba(166,166,166,0.7) — tinted blur base
+   Layer 2: #333 + mix-blend-mode: color-dodge — lifts to frosted glass tone */
+.lock-notif::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(166, 166, 166, 0.7);
+  backdrop-filter: blur(75px);
+  -webkit-backdrop-filter: blur(75px);
+  border-radius: 24px;
+}
+.lock-notif::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #333;
+  mix-blend-mode: color-dodge;
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.lock-notif-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px 12px;
+}
+
+/* App icon: 43×38px, border-radius 8.5px (from Figma) */
+.lock-notif-appicon {
+  width: 43px;
+  height: 38px;
+  border-radius: 8.5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.lock-notif-appicon img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lock-notif-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Title row: title + right-aligned time */
+.lock-notif-row1 {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-right: 8px;
+}
+.lock-notif-appname {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  line-height: 20px;
+  letter-spacing: -0.23px;
+}
+.lock-notif-time {
+  font-size: 13px;
+  color: #3d3d3d;
+  line-height: 20px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.lock-notif-msg {
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+  line-height: 20px;
+  letter-spacing: -0.23px;
+  margin: 0;
+}
+
+/* ── Bottom controls ── */
+.lock-controls {
+  position: absolute;
+  bottom: 48px;
+  left: 46px;
+  right: 46px;
+  display: flex;
+  justify-content: space-between;
+}
+.lock-ctrl {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: default;
+}
+
+/* ── Home indicator ── */
+.lock-home {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+.lock-home-bar {
+  width: 134px;
+  height: 5px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 100px;
+}
+
+
 /* Header */
 .cp-header {
   position: absolute;
@@ -1738,4 +2085,421 @@
     opacity: 0;
     transform: translateY(300px) translateX(var(--drift, 0px)) rotate(720deg) scale(0.5);
   }
+}
+
+/* ===== Chats Screen (Receiver POV) ===== */
+.chats-screen {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  font-family: 'Albert Sans', sans-serif;
+  overflow: hidden;
+}
+
+.chats-header {
+  position: absolute;
+  top: 54px;
+  left: 25px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chats-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.6px;
+}
+
+.chats-search-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.chats-section {
+  position: absolute;
+  top: 143px;
+  left: 25px;
+  right: 25px;
+}
+
+.chats-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.chats-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+}
+
+.chats-sort-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.chats-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-row {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  padding: 15px 25px;
+}
+
+.chat-avatar {
+  position: relative;
+  width: 85px;
+  height: 85px;
+  flex-shrink: 0;
+}
+
+.chat-avatar-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 86px;
+  height: 85px;
+  object-fit: contain;
+}
+
+.chat-avatar-photo {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.chat-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+}
+
+.chat-msg {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: 1.3;
+}
+
+/* Crossed-path new chat row (slides in when send is pressed) */
+.chat-row--crossed-path {
+  background: #fff1bf;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(-16px);
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition:
+    opacity 0.4s ease,
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    max-height 0.45s ease,
+    padding 0.4s ease;
+}
+
+.chat-row--crossed-path.visible {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 130px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 12px;
+}
+
+.chat-row--crossed-path .chat-text {
+  gap: 9px;
+}
+
+.chat-text-top {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chat-crossed-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: normal;
+}
+
+/* ===== Liked You Screen ===== */
+.liked-you-screen {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  font-family: 'Albert Sans', sans-serif;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.liked-you-screen.active {
+  transform: translateX(0);
+}
+
+.ly-header {
+  position: absolute;
+  top: 54px;
+  left: 25px;
+  width: 391px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ly-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 12px;
+}
+
+.ly-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.6px;
+}
+
+.ly-tune-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.ly-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.32px;
+  line-height: 1.4;
+}
+
+.ly-matches-section {
+  position: absolute;
+  top: 165px;
+  left: 0;
+  width: 430px;
+  background: #fff1bf;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ly-matches-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.4px;
+}
+
+.ly-match-cards {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
+.ly-match-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.ly-person-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  padding: 10px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ly-card-image {
+  width: 268px;
+  height: 324px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ly-card-img-blurred {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: blur(15px);
+  transform: scale(1.08);
+}
+
+.ly-reveal-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.34);
+  border: none;
+  border-radius: 21px;
+  height: 42px;
+  width: 187px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ly-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.32px;
+  padding: 0 5px;
+}
+
+.ly-card-badge {
+  background: #ffdb5b;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: normal;
+}
+
+.ly-card-badge strong {
+  font-weight: 700;
+}
+
+.ly-card-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ly-tag {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 5px 10px 5px 15px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: -0.24px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+}
+
+.ly-tag-more {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.24px;
+}
+
+.ly-chips {
+  position: absolute;
+  top: 737px;
+  left: 20px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.ly-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 33px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 0.5px solid #9b9b9b;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ly-chip--active {
+  background: #ffdb5b;
+  border-color: #d9b73e;
+}
+
+.ly-chip-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.ly-peek-card {
+  position: absolute;
+  top: 806px;
+  left: 20px;
+  width: 390px;
+  height: 100px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ly-peek-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(15px);
+  transform: scale(1.08);
+  border-radius: 20px;
+}
+
+/* Nav notification dot (receiver Liked You) */
+.nav-notif-dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  background: #ff3b30;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-notif-dot.visible {
+  opacity: 1;
+  transform: scale(1);
 }

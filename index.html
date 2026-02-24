@@ -8,8 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="crossed-paths.css">
 </head>
 <body>
+  <div class="phones-row">
+  <div class="phone-pov">
+    <span class="pov-label">Sender POV</span>
   <div class="phone-frame">
     <!-- Header -->
     <div class="header">
@@ -132,53 +136,141 @@
     <nav class="nav-bar">
       <a href="#" class="nav-item">
         <div class="nav-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="8" r="4" stroke="#7e7e7e" stroke-width="1.5" fill="none"/>
-            <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#7e7e7e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
+          <img src="https://www.figma.com/api/mcp/asset/5de35f1f-66ea-4e76-8628-d67cd259e290" alt="Profile" width="26" height="26">
         </div>
         <span class="nav-label">Profile</span>
       </a>
       <a href="#" class="nav-item nav-item--active">
         <div class="nav-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="9" stroke="#5b5b5b" stroke-width="2" fill="none"/>
-            <circle cx="12" cy="12" r="3" fill="#5b5b5b"/>
-          </svg>
+          <img src="https://www.figma.com/api/mcp/asset/49c56453-168c-4e39-8711-210a9806e278" alt="Discover" width="26" height="26">
         </div>
         <span class="nav-label nav-label--active">Discover</span>
       </a>
       <a href="#" class="nav-item">
         <div class="nav-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9" cy="8" r="3.5" stroke="#7e7e7e" stroke-width="1.5" fill="none"/>
-            <circle cx="16" cy="8" r="3.5" stroke="#7e7e7e" stroke-width="1.5" fill="none"/>
-            <path d="M2 19C2 16.2386 5.13401 14 9 14C9.7 14 10.37 14.08 11 14.22" stroke="#7e7e7e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M13 14.22C13.63 14.08 14.3 14 15 14C18.866 14 22 16.2386 22 19" stroke="#7e7e7e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
+          <img src="https://www.figma.com/api/mcp/asset/1410389a-64c0-4eb8-8bf4-43d883ae9f13" alt="People" width="26" height="26">
         </div>
         <span class="nav-label">People</span>
       </a>
       <a href="#" class="nav-item">
         <div class="nav-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" stroke="#7e7e7e" stroke-width="1.5" fill="none"/>
-          </svg>
+          <img src="https://www.figma.com/api/mcp/asset/0068133e-1e44-4938-ac9d-158742c1e3a3" alt="Liked You" width="26" height="26">
         </div>
         <span class="nav-label">Liked You</span>
       </a>
       <a href="#" class="nav-item">
         <div class="nav-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 15C21 15.55 20.55 16 20 16H6L2 20V4C2 3.45 2.45 3 3 3H20C20.55 3 21 3.45 21 4V15Z" stroke="#7e7e7e" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-          </svg>
+          <img src="https://www.figma.com/api/mcp/asset/5874239d-a361-4a7e-ba4a-438e67406a9e" alt="Chats" width="26" height="26">
         </div>
         <span class="nav-label">Chats</span>
       </a>
     </nav>
-  </div>
+  </div><!-- end sender phone-frame -->
+  </div><!-- end sender phone-pov -->
+
+  <!-- Receiver POV -->
+  <div class="phone-pov">
+    <span class="pov-label">Receiver POV</span>
+    <div class="phone-frame">
+      <div class="chats-screen">
+
+        <!-- Header -->
+        <div class="chats-header">
+          <span class="chats-title">Chats</span>
+          <img src="https://www.figma.com/api/mcp/asset/a8b6e627-dfb0-47fe-af43-c9287bc47385" alt="Search" class="chats-search-icon">
+        </div>
+
+        <!-- Chats section -->
+        <div class="chats-section">
+          <div class="chats-section-header">
+            <span class="chats-section-title">Chats (Recent)</span>
+            <img src="https://www.figma.com/api/mcp/asset/53456c51-6310-45bb-971d-0eb8b58db65a" alt="Sort" class="chats-sort-icon">
+          </div>
+          <div class="chats-list">
+            <div class="chat-row">
+              <div class="chat-avatar">
+                <img src="https://www.figma.com/api/mcp/asset/aff54304-9511-4240-90c6-168b258eec85" class="chat-avatar-ring" alt="">
+                <img src="https://www.figma.com/api/mcp/asset/b450e297-0301-4530-b7d4-697abcea861c" class="chat-avatar-photo" alt="Amy">
+              </div>
+              <div class="chat-text">
+                <p class="chat-name">Amy, 23</p>
+                <p class="chat-msg">okay but I need to know where that last photo was taken</p>
+              </div>
+            </div>
+            <div class="chat-row">
+              <div class="chat-avatar">
+                <img src="https://www.figma.com/api/mcp/asset/aff54304-9511-4240-90c6-168b258eec85" class="chat-avatar-ring" alt="">
+                <img src="https://www.figma.com/api/mcp/asset/8fa7fc55-af52-443e-99b5-39727d88dd01" class="chat-avatar-photo" alt="Lexi">
+              </div>
+              <div class="chat-text">
+                <p class="chat-name">Lexi, 22</p>
+                <p class="chat-msg">u seem like u would have elite music taste?</p>
+              </div>
+            </div>
+            <div class="chat-row">
+              <div class="chat-avatar">
+                <img src="https://www.figma.com/api/mcp/asset/aff54304-9511-4240-90c6-168b258eec85" class="chat-avatar-ring" alt="">
+                <img src="https://www.figma.com/api/mcp/asset/e3f157b9-8d03-4ff1-b7cb-aa4983c00dc2" class="chat-avatar-photo" alt="Adriana">
+              </div>
+              <div class="chat-text">
+                <p class="chat-name">Adriana, 24</p>
+                <p class="chat-msg">i'm intrigued</p>
+              </div>
+            </div>
+            <div class="chat-row">
+              <div class="chat-avatar">
+                <img src="https://www.figma.com/api/mcp/asset/aff54304-9511-4240-90c6-168b258eec85" class="chat-avatar-ring" alt="">
+                <img src="https://www.figma.com/api/mcp/asset/3c8ece91-cbf8-4cb8-b450-f8b7ae3206c7" class="chat-avatar-photo" alt="Nina">
+              </div>
+              <div class="chat-text">
+                <p class="chat-name">Nina, 21</p>
+                <p class="chat-msg">Currently debating on order Japanese takeout again</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nav bar with Chats active -->
+        <nav class="nav-bar">
+          <a href="#" class="nav-item">
+            <div class="nav-icon">
+              <img src="https://www.figma.com/api/mcp/asset/5de35f1f-66ea-4e76-8628-d67cd259e290" alt="Profile" width="26" height="26">
+            </div>
+            <span class="nav-label">Profile</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">
+              <img src="https://www.figma.com/api/mcp/asset/3ebe540f-c5fe-492a-bb7b-d75fc256af1b" alt="Discover" width="26" height="26">
+            </div>
+            <span class="nav-label">Discover</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">
+              <img src="https://www.figma.com/api/mcp/asset/1410389a-64c0-4eb8-8bf4-43d883ae9f13" alt="People" width="26" height="26">
+            </div>
+            <span class="nav-label">People</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">
+              <img src="https://www.figma.com/api/mcp/asset/0068133e-1e44-4938-ac9d-158742c1e3a3" alt="Liked You" width="26" height="26">
+            </div>
+            <span class="nav-label">Liked You</span>
+          </a>
+          <a href="#" class="nav-item nav-item--active">
+            <div class="nav-icon">
+              <img src="https://www.figma.com/api/mcp/asset/37cf8655-fd83-42e0-a74f-ed2a1f71998f" alt="Chats" width="26" height="26">
+            </div>
+            <span class="nav-label nav-label--active">Chats</span>
+          </a>
+        </nav>
+
+      </div><!-- end chats-screen -->
+    </div><!-- end receiver phone-frame -->
+  </div><!-- end receiver phone-pov -->
+
+  </div><!-- end phones-row -->
   <script>
-    // Show notification after a short delay
+    // Show both notifications simultaneously
     setTimeout(function() {
       document.getElementById('notifOverlay').classList.add('active');
     }, 2500);
