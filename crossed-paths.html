@@ -345,16 +345,32 @@
           <!-- Crossed Paths toggle -->
           <div class="settings-cp-toggle">
             <span class="settings-cp-toggle-label">Crossed Paths:</span>
-            <div class="settings-toggle" onclick="this.classList.toggle('settings-toggle--off')"></div>
+            <div class="settings-toggle" onclick="toggleCPSwitch(this)"></div>
           </div>
 
           <!-- What is Crossed Paths? dropdown -->
-          <button class="settings-dropdown">
-            <span class="settings-dropdown-text">What is Crossed Paths?</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-              <path d="M7 10L12 15L17 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <button class="settings-dropdown" id="whatIsCPDropdown" onclick="toggleCPDropdown()">
+            <div class="settings-dropdown-header">
+              <span class="settings-dropdown-text">What is Crossed Paths?</span>
+              <svg class="settings-dropdown-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10L12 15L17 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="settings-dropdown-body">
+              <div class="settings-dropdown-body-text">
+                <p>Crossed Paths highlights when you and another member visited the same public place around the same time, <strong>after the fact</strong>.</p>
+                <p>It's designed to spark meaningful connections — not track you in real time.</p>
+                <p><strong>Exact addresses and times are never shared</strong>, and some <strong>sensitive places are always excluded</strong> for everyone's safety.</p>
+              </div>
+              <div class="settings-dropdown-pill">Exact addresses are never shown.</div>
+              <div class="settings-dropdown-pill">Visits appear only after you've left.</div>
+              <div class="settings-dropdown-pill">Sensitive locations are automatically excluded.</div>
+              <div class="settings-dropdown-pill">You control which categories can be shared.</div>
+            </div>
           </button>
+
+          <!-- Collapsible CP content -->
+          <div id="settingsCPContent" class="settings-cp-content">
 
           <!-- Choose Where section -->
           <div class="settings-section">
@@ -418,6 +434,8 @@
               <div class="settings-toggle" onclick="this.classList.toggle('settings-toggle--off')"></div>
             </div>
           </div>
+
+          </div><!-- end settingsCPContent -->
         </div>
       </div>
     </div>
@@ -781,6 +799,16 @@
           });
         });
       });
+    }
+
+    function toggleCPSwitch(el) {
+      el.classList.toggle('settings-toggle--off');
+      var content = document.getElementById('settingsCPContent');
+      content.classList.toggle('hidden', el.classList.contains('settings-toggle--off'));
+    }
+
+    function toggleCPDropdown() {
+      document.getElementById('whatIsCPDropdown').classList.toggle('settings-dropdown--open');
     }
 
     function openSettings() {

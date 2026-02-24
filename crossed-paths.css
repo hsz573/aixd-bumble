@@ -1151,6 +1151,17 @@
   justify-content: flex-start;
 }
 
+/* Collapsible CP content */
+.settings-cp-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.settings-cp-content.hidden {
+  display: none;
+}
+
 /* Dropdown button */
 .settings-dropdown {
   background: #e9e9e9;
@@ -1158,12 +1169,20 @@
   border-radius: 20px;
   padding: 30px 25px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
   width: 100%;
   cursor: pointer;
   text-align: left;
+  gap: 0;
+}
+
+.settings-dropdown-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 10px;
+  width: 100%;
 }
 
 .settings-dropdown-text {
@@ -1173,6 +1192,58 @@
   color: #000;
   letter-spacing: -0.36px;
   line-height: normal;
+}
+
+.settings-dropdown-chevron {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.settings-dropdown--open .settings-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.settings-dropdown-body {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.settings-dropdown--open .settings-dropdown-body {
+  display: flex;
+}
+
+.settings-dropdown-body-text {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.28px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.settings-dropdown-body-text p {
+  margin-bottom: 10px;
+}
+
+.settings-dropdown-body-text p:last-child {
+  margin-bottom: 0;
+}
+
+.settings-dropdown-pill {
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.28px;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
 }
 
 /* Section */
