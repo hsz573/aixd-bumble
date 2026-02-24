@@ -704,8 +704,88 @@
       document.getElementById('likeSentConfetti').innerHTML = '';
     }
 
+    var chipsInitialized = false;
+    var draggedChip = null;
+
+    function initDraggableChips() {
+      if (chipsInitialized) return;
+      chipsInitialized = true;
+
+      // Add grip handle + drag events to every chip
+      document.querySelectorAll('.settings-chip').forEach(function(chip) {
+        chip.setAttribute('draggable', 'true');
+
+        // Build 6-dot grip handle SVG
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '10');
+        svg.setAttribute('height', '14');
+        svg.setAttribute('viewBox', '0 0 10 14');
+        svg.setAttribute('fill', 'none');
+        svg.classList.add('settings-chip-handle');
+        [[2,2],[8,2],[2,7],[8,7],[2,12],[8,12]].forEach(function(pos) {
+          var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          c.setAttribute('cx', pos[0]);
+          c.setAttribute('cy', pos[1]);
+          c.setAttribute('r', '1.5');
+          c.setAttribute('fill', '#555');
+          svg.appendChild(c);
+        });
+        chip.insertBefore(svg, chip.firstChild);
+
+        chip.addEventListener('dragstart', function(e) {
+          draggedChip = chip;
+          setTimeout(function() { chip.classList.add('dragging'); }, 0);
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        chip.addEventListener('dragend', function() {
+          chip.classList.remove('dragging');
+          draggedChip = null;
+          document.querySelectorAll('.settings-chips').forEach(function(z) {
+            z.classList.remove('chips-drag-over');
+          });
+        });
+      });
+
+      // Make each chips container a drop zone
+      document.querySelectorAll('.settings-chips').forEach(function(zone) {
+        zone.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          zone.classList.add('chips-drag-over');
+        });
+        zone.addEventListener('dragleave', function(e) {
+          if (!zone.contains(e.relatedTarget)) {
+            zone.classList.remove('chips-drag-over');
+          }
+        });
+        zone.addEventListener('drop', function(e) {
+          e.preventDefault();
+          zone.classList.remove('chips-drag-over');
+          if (!draggedChip || zone.contains(draggedChip)) return;
+
+          // Append to last row if it has room, otherwise start a new row
+          var rows = zone.querySelectorAll('.settings-chips-row');
+          var lastRow = rows[rows.length - 1];
+          if (!lastRow || lastRow.children.length >= 2) {
+            var newRow = document.createElement('div');
+            newRow.className = 'settings-chips-row';
+            newRow.appendChild(draggedChip);
+            zone.appendChild(newRow);
+          } else {
+            lastRow.appendChild(draggedChip);
+          }
+
+          // Remove any rows that became empty
+          document.querySelectorAll('.settings-chips-row').forEach(function(row) {
+            if (row.children.length === 0) row.remove();
+          });
+        });
+      });
+    }
+
     function openSettings() {
       document.getElementById('settingsOverlay').classList.add('active');
+      initDraggableChips();
     }
 
     function closeSettings() {
