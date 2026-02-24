@@ -838,7 +838,10 @@
 
 .chat-sent-bubble {
   display: none;
-  width: 326px;
+  position: absolute;
+  bottom: 100px;
+  right: 36px;
+  max-width: 260px;
   background: #e8e8e8;
   border-radius: 20px;
   padding: 10px 20px;
