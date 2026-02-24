@@ -136,7 +136,7 @@
         <p class="reveal-confirm-text">Are you Sure? You only have 1 free Potential Match Reveal this month.</p>
         <button class="reveal-confirm-yes" onclick="confirmReveal()">Yes</button>
         <button class="reveal-confirm-no" onclick="closeRevealConfirm(event, true)">No</button>
-        <a href="#" class="reveal-confirm-upgrade">Upgrade now to reveal more</a>
+        <a href="#" class="reveal-confirm-upgrade" onclick="openPremium(); closeRevealConfirm(event, true); return false;">Upgrade now to reveal more</a>
       </div>
     </div>
 
@@ -147,7 +147,7 @@
           <p class="unlock-title">Join to Unlock</p>
           <p class="unlock-subtitle">See the full profiles of potential matches you've Crossed Paths with</p>
         </div>
-        <button class="unlock-premium-button">Get Bumble Premium</button>
+        <button class="unlock-premium-button" onclick="openPremium()">Get Bumble Premium</button>
         <a href="#" class="unlock-not-now" onclick="closeUnlock(event, true)">Not now</a>
       </div>
     </div>
@@ -349,6 +349,102 @@
       <div class="like-sent-confetti" id="likeSentConfetti"></div>
     </div>
 
+    <!-- Get Premium Overlay -->
+    <div class="premium-overlay" id="premiumOverlay">
+      <!-- Header -->
+      <div class="premium-header">
+        <div class="premium-header-spacer"></div>
+        <div class="premium-tabs">
+          <button class="premium-tab premium-tab--active">Premium</button>
+          <button class="premium-tab">Premium+</button>
+        </div>
+        <button class="premium-close-btn" onclick="closePremium()" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="premium-scroll">
+        <!-- Blurred profile bubbles -->
+        <div class="premium-profiles">
+          <div class="premium-profile-bubble">
+            <img src="assets/potential2.png" alt="" />
+          </div>
+          <div class="premium-profile-bubble">
+            <img src="assets/potential1.png" alt="" />
+          </div>
+          <div class="premium-profile-bubble">
+            <img src="assets/mark-circle.png" alt="" />
+          </div>
+        </div>
+
+        <!-- Title & subtitle -->
+        <p class="premium-title">See potential matches</p>
+        <p class="premium-subtitle">See the full profiles of potential matches you've Crossed Paths with</p>
+
+        <!-- Pricing cards -->
+        <div class="premium-pricing-row">
+          <div class="premium-pricing-card premium-pricing-card--selected" onclick="selectPremiumPlan(this, 'Get 1 month for $49.99')">
+            <div class="premium-card-top">
+              <span class="premium-card-duration">1 month</span>
+              <div class="premium-radio premium-radio--selected"></div>
+            </div>
+            <p class="premium-card-price">$11.66/wk</p>
+            <p class="premium-card-popular">Most popular</p>
+            <span class="premium-badge premium-badge--dark">Save 53%</span>
+          </div>
+          <div class="premium-pricing-card" onclick="selectPremiumPlan(this, 'Get 1 week for $24.99')">
+            <div class="premium-card-top">
+              <span class="premium-card-duration">1 week</span>
+              <div class="premium-radio"></div>
+            </div>
+            <p class="premium-card-price">$24.99</p>
+            <span class="premium-badge premium-badge--dark">Save 53%</span>
+          </div>
+          <div class="premium-pricing-card" onclick="selectPremiumPlan(this, 'Get 3 months for $84.99')">
+            <div class="premium-card-top">
+              <span class="premium-card-duration">3 month</span>
+              <div class="premium-radio"></div>
+            </div>
+            <p class="premium-card-price">$7/wk</p>
+            <span class="premium-badge premium-badge--light">Save 53%</span>
+          </div>
+        </div>
+
+        <!-- Features list -->
+        <div class="premium-features">
+          <div class="premium-feature">
+            <p class="premium-feature-title">Unlimited likes</p>
+            <p class="premium-feature-desc">Send likes to as many people as you want</p>
+          </div>
+          <div class="premium-feature">
+            <p class="premium-feature-title">Advanced filters</p>
+            <p class="premium-feature-desc">Use more filters to get specific</p>
+          </div>
+          <div class="premium-feature">
+            <p class="premium-feature-title">Incognito mode</p>
+            <p class="premium-feature-desc">Only be shown to people you've liked</p>
+          </div>
+          <div class="premium-feature">
+            <p class="premium-feature-title">Potential matches</p>
+            <p class="premium-feature-desc">View full profiles of potential matches</p>
+          </div>
+        </div>
+
+        <!-- See all perks -->
+        <div class="premium-perks-wrap">
+          <button class="premium-perks-btn">See all perks</button>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="premium-cta">
+        <button class="premium-cta-btn" id="premiumCtaBtn">Get 1 month for $49.99</button>
+      </div>
+    </div>
+
     <!-- Bottom Navigation -->
     <nav class="nav-bar">
       <a href="#" class="nav-item">
@@ -533,6 +629,26 @@
       document.querySelector('.cp-scroll-content').style.overflow = '';
       // Clear confetti
       document.getElementById('likeSentConfetti').innerHTML = '';
+    }
+
+    function openPremium() {
+      document.getElementById('premiumOverlay').classList.add('active');
+    }
+
+    function closePremium() {
+      document.getElementById('premiumOverlay').classList.remove('active');
+    }
+
+    function selectPremiumPlan(card, ctaText) {
+      document.querySelectorAll('.premium-pricing-card').forEach(function(c) {
+        c.classList.remove('premium-pricing-card--selected');
+        var radio = c.querySelector('.premium-radio');
+        if (radio) radio.classList.remove('premium-radio--selected');
+      });
+      card.classList.add('premium-pricing-card--selected');
+      var radio = card.querySelector('.premium-radio');
+      if (radio) radio.classList.add('premium-radio--selected');
+      document.getElementById('premiumCtaBtn').textContent = ctaText;
     }
 
     function spawnConfetti() {
