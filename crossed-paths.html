@@ -71,7 +71,7 @@
             <div class="cp-card-image cp-card-image--blurred">
               <img src="assets/potential1.png" alt="Potential match" data-revealed-src="assets/potential1-revealed.png" />
               <div class="cp-reveal-overlay">
-                <button class="cp-reveal-button" onclick="revealMatch(this)">Click to Reveal</button>
+                <button class="cp-reveal-button" onclick="revealMatch(this)">Tap to Reveal</button>
               </div>
               <div class="cp-lock-overlay">
                 <div class="cp-lock-icon">
@@ -101,7 +101,7 @@
             <div class="cp-card-image cp-card-image--blurred">
               <img src="assets/potential2.png" alt="Potential match" />
               <div class="cp-reveal-overlay">
-                <button class="cp-reveal-button" onclick="revealMatch(this)">Click to Reveal</button>
+                <button class="cp-reveal-button" onclick="revealMatch(this)">Tap to Reveal</button>
               </div>
               <div class="cp-lock-overlay">
                 <div class="cp-lock-icon">
@@ -234,7 +234,7 @@
 
         <!-- Person Info -->
         <div class="profile-info">
-          <p class="profile-info-name">???, 24</p>
+          <p class="profile-info-name">Luke, 24</p>
           <div class="profile-info-tags">
             <div class="profile-info-tags-row">
               <span class="cp-tag">sports</span>
@@ -302,26 +302,6 @@
 
     <!-- Like Sent Screen -->
     <div class="like-sent-overlay" id="likeSentOverlay">
-      <!-- Header -->
-      <div class="cp-header" style="position: absolute; z-index: 12;">
-        <div class="cp-header-left">
-          <button class="cp-back-button" aria-label="Go back" onclick="closeLikeSent()">
-            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <h1 class="cp-title">Crossed Paths</h1>
-        </div>
-        <div class="cp-header-icons">
-          <button class="cp-icon-button" aria-label="Map view">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 3L9 5.5L3 3V19L9 16.5L15 19L21 16.5V3L15 5.5V19" stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-              <path d="M9 5.5V16.5" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
       <!-- Centered content -->
       <div class="like-sent-content">
         <div class="like-sent-image-wrapper">
@@ -333,6 +313,8 @@
           </div>
         </div>
         <p class="like-sent-text">You sent a Like!</p>
+        <p class="like-sent-sub">Luke knows you're interested</p>
+        <button class="like-sent-back" onclick="closeLikeSent()">Continue Browsing</button>
       </div>
 
       <!-- Confetti particles -->
@@ -713,7 +695,7 @@
             <div class="ly-person-card">
               <div class="ly-card-image">
                 <img src="https://www.figma.com/api/mcp/asset/527d1777-3a8a-42df-95b4-fd18a8b5e322" alt="" class="ly-card-img-blurred">
-                <button class="ly-reveal-btn" onclick="receiverOpenRevealConfirm()">Click to Reveal</button>
+                <button class="ly-reveal-btn" onclick="receiverOpenRevealConfirm()">Tap to Reveal</button>
               </div>
               <div class="ly-card-name">???, 24</div>
               <div class="ly-card-badge">You crossed paths at <strong>PNC Park.</strong></div>
@@ -781,9 +763,142 @@
       <div class="reveal-confirm-overlay" id="receiverRevealConfirmOverlay" onclick="receiverCloseRevealConfirm(event)">
         <div class="reveal-confirm-modal">
           <p class="reveal-confirm-text">Are you Sure? You only have 1 free Potential Match Reveal this month.</p>
-          <button class="reveal-confirm-yes" onclick="receiverCloseRevealConfirm(null, true)">Yes</button>
+          <button class="reveal-confirm-yes" onclick="receiverConfirmReveal()">Yes</button>
           <button class="reveal-confirm-no" onclick="receiverCloseRevealConfirm(null, true)">No</button>
           <a href="#" class="reveal-confirm-upgrade" onclick="receiverCloseRevealConfirm(null, true); return false;">Upgrade now to reveal more</a>
+        </div>
+      </div>
+
+      <!-- Receiver Profile Overlay -->
+      <div class="receiver-profile-overlay" id="receiverProfileOverlay">
+        <!-- Header -->
+        <div class="receiver-profile-header">
+          <div class="receiver-profile-header-left">
+            <button class="cp-back-button" onclick="closeReceiverProfile()">
+              <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <h1 class="receiver-profile-title">Liked You</h1>
+          </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6h16M4 12h8M4 18h12" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="12" r="3" stroke="black" stroke-width="1.5"/>
+            <circle cx="14" cy="6" r="3" stroke="black" stroke-width="1.5"/>
+            <circle cx="17" cy="18" r="3" stroke="black" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <!-- Big photo card with overlaid info -->
+        <div class="receiver-profile-card">
+          <img src="https://www.figma.com/api/mcp/asset/527d1777-3a8a-42df-95b4-fd18a8b5e322" alt="Lily" class="receiver-profile-photo" />
+          <div class="receiver-profile-photo-gradient"></div>
+          <div class="receiver-profile-card-info">
+            <p class="receiver-profile-name">Lily, 24</p>
+            <div class="receiver-profile-tags">
+              <span class="receiver-profile-tag">dancing</span>
+              <span class="receiver-profile-tag">sports games</span>
+              <span class="receiver-profile-tag">listening to music</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yellow crossed paths badge -->
+        <div class="receiver-profile-badge">
+          You crossed paths with this potential match at <strong>PNC Park!</strong>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="receiver-profile-btns">
+          <button class="receiver-btn-not-interested" onclick="closeReceiverProfile()">Not Interested</button>
+          <button class="receiver-btn-match" onclick="openReceiverMatch()">Match</button>
+        </div>
+
+        <!-- Nav bar -->
+        <nav class="nav-bar">
+          <a href="#" class="nav-item">
+            <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/5de35f1f-66ea-4e76-8628-d67cd259e290" alt="Profile" width="26" height="26"></div>
+            <span class="nav-label">Profile</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/3ebe540f-c5fe-492a-bb7b-d75fc256af1b" alt="Discover" width="26" height="26"></div>
+            <span class="nav-label">Discover</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/1410389a-64c0-4eb8-8bf4-43d883ae9f13" alt="People" width="26" height="26"></div>
+            <span class="nav-label">People</span>
+          </a>
+          <a href="#" class="nav-item nav-item--active">
+            <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/87ab7f0b-6d3a-442f-a392-5efe5ac68635" alt="Liked You" width="26" height="26"></div>
+            <span class="nav-label nav-label--active">Liked You</span>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/5874239d-a361-4a7e-ba4a-438e67406a9e" alt="Chats" width="26" height="26"></div>
+            <span class="nav-label">Chats</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Receiver Match Overlay -->
+      <div class="receiver-match-overlay" id="receiverMatchOverlay">
+        <div class="receiver-match-confetti" id="receiverMatchConfetti"></div>
+        <div class="receiver-match-content">
+          <div class="receiver-match-avatars">
+            <div class="receiver-match-avatar receiver-match-avatar--you">
+              <img src="assets/potential1-circle.png" alt="Luke" />
+            </div>
+            <div class="receiver-match-avatar receiver-match-avatar--lily">
+              <img src="https://www.figma.com/api/mcp/asset/527d1777-3a8a-42df-95b4-fd18a8b5e322" alt="Lily" />
+            </div>
+          </div>
+          <p class="receiver-match-title">It's a Match!</p>
+          <p class="receiver-match-sub">You and Lily liked each other</p>
+          <button class="receiver-match-cta" onclick="openReceiverChat()">Make a Move</button>
+        </div>
+      </div>
+
+      <!-- Receiver Chat Overlay -->
+      <div class="chat-overlay" id="receiverChatOverlay">
+        <!-- Back button -->
+        <div class="chat-back">
+          <button class="cp-back-button" aria-label="Go back" onclick="closeReceiverChat()">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1L1 9L9 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Chat content -->
+        <div class="chat-content">
+          <div class="chat-profile-photo">
+            <img src="https://www.figma.com/api/mcp/asset/527d1777-3a8a-42df-95b4-fd18a8b5e322" alt="Lily" style="border-radius:50%;width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="chat-profile-info">
+            <p class="chat-profile-name">Lily, 24</p>
+            <p class="chat-profile-location">You Crossed Paths at <strong>PNC Park.</strong></p>
+          </div>
+          <div class="chat-suggestion" id="receiverChatSuggestion">
+            <p class="chat-suggestion-title">Opening move suggestion...</p>
+            <p class="chat-suggestion-text">What was your favorite part about the game at PNC Park?</p>
+            <button class="chat-suggestion-send" onclick="sendReceiverOpeningMove()">Send</button>
+          </div>
+        </div>
+
+        <!-- Sent message bubble -->
+        <div class="chat-sent-bubble" id="receiverChatSentBubble" style="display:none;">
+          <p>What was your favorite part about the game at PNC Park?</p>
+        </div>
+
+        <!-- Message input -->
+        <div class="chat-input-bar">
+          <div class="chat-input-field">
+            <input type="text" placeholder="Send a message" />
+          </div>
+          <button class="chat-send-button" aria-label="Send message">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 14V2M8 2L2 8M8 2L14 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -836,6 +951,12 @@
       imageContainer.classList.remove('cp-card-image--blurred');
       imageContainer.classList.add('cp-card-image--revealed');
 
+      // Golden shimmer sweep over the revealed photo
+      var shimmer = document.createElement('div');
+      shimmer.className = 'reveal-shimmer';
+      imageContainer.appendChild(shimmer);
+      setTimeout(function() { if (shimmer.parentNode) shimmer.parentNode.removeChild(shimmer); }, 1000);
+
       // Swap to revealed image if available
       if (img.dataset.revealedSrc) {
         img.src = img.dataset.revealedSrc;
@@ -858,6 +979,12 @@
       });
 
       pendingRevealButton = null;
+
+      // Update the revealed card name
+      var cardNameEl = card.querySelector('.cp-card-name p');
+      if (cardNameEl && cardNameEl.textContent.startsWith('???')) {
+        cardNameEl.textContent = 'Luke, 24';
+      }
 
       // Make the revealed card clickable to open profile
       card.style.cursor = 'pointer';
@@ -899,6 +1026,12 @@
       document.getElementById('receiverNewChat').classList.add('visible');
     }
 
+    function sendReceiverOpeningMove() {
+      document.getElementById('receiverChatSuggestion').style.display = 'none';
+      document.getElementById('receiverChatSentBubble').style.display = '';
+      document.getElementById('receiverChatSentBubble').classList.add('visible');
+    }
+
     function closeChat() {
       document.getElementById('chatOverlay').classList.remove('active');
       document.getElementById('chatSuggestion').style.display = '';
@@ -917,6 +1050,93 @@
 
     function receiverOpenRevealConfirm() {
       document.getElementById('receiverRevealConfirmOverlay').classList.add('active');
+    }
+
+    function receiverConfirmReveal() {
+      document.getElementById('receiverRevealConfirmOverlay').classList.remove('active');
+      var img = document.querySelector('.ly-card-img-blurred');
+      if (img) {
+        img.classList.remove('ly-card-img-blurred');
+        img.classList.add('ly-card-img-revealed');
+        // Golden shimmer sweep
+        var shimmer = document.createElement('div');
+        shimmer.className = 'reveal-shimmer';
+        img.parentNode.appendChild(shimmer);
+        setTimeout(function() { if (shimmer.parentNode) shimmer.parentNode.removeChild(shimmer); }, 1000);
+      }
+      var btn = document.querySelector('.ly-reveal-btn');
+      if (btn) btn.style.display = 'none';
+      var nameEl = document.querySelector('.ly-card-name');
+      if (nameEl) nameEl.textContent = 'Lily, 24';
+      var card = document.querySelector('.ly-person-card');
+      if (card) {
+        card.style.cursor = 'pointer';
+        card.onclick = openReceiverProfile;
+      }
+    }
+
+    function openReceiverProfile() {
+      document.getElementById('receiverProfileOverlay').classList.add('active');
+    }
+
+    function closeReceiverProfile() {
+      document.getElementById('receiverProfileOverlay').classList.remove('active');
+    }
+
+    function openReceiverMatch() {
+      closeReceiverProfile();
+      var overlay = document.getElementById('receiverMatchOverlay');
+      overlay.classList.add('active');
+      spawnMatchConfetti();
+    }
+
+    function closeReceiverMatch() {
+      document.getElementById('receiverMatchOverlay').classList.remove('active');
+      document.getElementById('receiverMatchConfetti').innerHTML = '';
+    }
+
+    function openReceiverChat() {
+      closeReceiverMatch();
+      document.getElementById('receiverChatOverlay').classList.add('active');
+    }
+
+    function closeReceiverChat() {
+      document.getElementById('receiverChatOverlay').classList.remove('active');
+    }
+
+    function spawnMatchConfetti() {
+      var container = document.getElementById('receiverMatchConfetti');
+      container.innerHTML = '';
+      var colors = ['#ffdb5b', '#ff6b6b', '#ffa502', '#ff4757', '#ffd32a', '#fff200', '#ffb8b8', '#f8a5c2', '#ffffff'];
+      var shapes = ['circle', 'square', 'heart', 'cross'];
+      for (var i = 0; i < 55; i++) {
+        var particle = document.createElement('div');
+        particle.className = 'confetti-particle';
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var shape = shapes[Math.floor(Math.random() * shapes.length)];
+        var size = 6 + Math.random() * 9;
+        var left = 5 + Math.random() * 90;
+        var delay = Math.random() * 0.8;
+        var duration = 1.4 + Math.random() * 1.2;
+        var drift = -80 + Math.random() * 160;
+        particle.style.left = left + '%';
+        particle.style.top = '20%';
+        particle.style.animationDelay = delay + 's';
+        particle.style.setProperty('--drift', drift + 'px');
+        particle.style.setProperty('--duration', duration + 's');
+        if (shape === 'heart') {
+          particle.innerHTML = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 12 11"><path d="M6 10.5L5.175 9.753C2.1 6.972 0 5.064 0 2.75C0 0.842 1.512 -0.5 3.3 -0.5C4.308 -0.5 5.268 0.003 6 0.831C6.732 0.003 7.692 -0.5 8.7 -0.5C10.488 -0.5 12 0.842 12 2.75C12 5.064 9.9 6.972 6.825 9.76L6 10.5Z" fill="' + color + '"/></svg>';
+        } else if (shape === 'cross') {
+          particle.innerHTML = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 12 12"><path d="M2 2L10 10M10 2L2 10" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round"/></svg>';
+        } else {
+          particle.style.width = size + 'px';
+          particle.style.height = size + 'px';
+          particle.style.background = color;
+          particle.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+          if (shape === 'square') particle.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+        }
+        container.appendChild(particle);
+      }
     }
 
     function receiverCloseRevealConfirm(event, forceClose) {
@@ -1085,7 +1305,7 @@
       var container = document.getElementById('likeSentConfetti');
       container.innerHTML = '';
       var colors = ['#ffdb5b', '#ff6b6b', '#ffa502', '#ff4757', '#ffd32a', '#fff200', '#ffb8b8', '#f8a5c2'];
-      var shapes = ['circle', 'square', 'heart'];
+      var shapes = ['circle', 'square', 'heart', 'cross'];
 
       for (var i = 0; i < 40; i++) {
         var particle = document.createElement('div');
@@ -1106,6 +1326,8 @@
 
         if (shape === 'heart') {
           particle.innerHTML = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 12 11"><path d="M6 10.5L5.175 9.753C2.1 6.972 0 5.064 0 2.75C0 0.842 1.512 -0.5 3.3 -0.5C4.308 -0.5 5.268 0.003 6 0.831C6.732 0.003 7.692 -0.5 8.7 -0.5C10.488 -0.5 12 0.842 12 2.75C12 5.064 9.9 6.972 6.825 9.76L6 10.5Z" fill="' + color + '"/></svg>';
+        } else if (shape === 'cross') {
+          particle.innerHTML = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 12 12"><path d="M2 2L10 10M10 2L2 10" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round"/></svg>';
         } else {
           particle.style.width = size + 'px';
           particle.style.height = size + 'px';

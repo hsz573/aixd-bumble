@@ -1036,6 +1036,7 @@
   position: absolute;
   top: 107px;
   left: 52px;
+  width: 326px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1225,7 +1226,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fff;
+  background: linear-gradient(160deg, #fffff8 0%, #fff7c2 50%, #fffff8 100%);
   z-index: 300;
   pointer-events: none;
   opacity: 0;
@@ -1264,6 +1265,7 @@
   height: 138px;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid #ffdb5b;
 }
 
 .like-sent-heart-badge {
@@ -1296,6 +1298,20 @@
   animation: textFadeUp 0.5s 0.5s both ease-out;
 }
 
+.like-sent-sub {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  text-align: center;
+  letter-spacing: -0.3px;
+  line-height: normal;
+  margin-top: -8px;
+}
+
+.like-sent-overlay.active .like-sent-sub {
+  animation: textFadeUp 0.5s 0.6s both ease-out;
+}
+
 .like-sent-back {
   width: 261px;
   height: 50px;
@@ -1304,7 +1320,7 @@
   border-radius: 25px;
   font-family: 'Albert Sans', sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   color: #000;
   letter-spacing: -0.32px;
   cursor: pointer;
@@ -2087,6 +2103,287 @@
   }
 }
 
+/* ===== Receiver Profile Overlay ===== */
+.receiver-profile-overlay {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 260;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease;
+  font-family: 'Albert Sans', sans-serif;
+}
+
+.receiver-profile-overlay.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.receiver-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 54px 25px 12px;
+  flex-shrink: 0;
+}
+
+.receiver-profile-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.receiver-profile-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.56px;
+  margin: 0;
+  line-height: normal;
+}
+
+.receiver-profile-card {
+  position: relative;
+  margin: 10px 15px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+}
+
+.receiver-profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.receiver-profile-photo-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.receiver-profile-card-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.receiver-profile-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.56px;
+  margin: 0 0 10px;
+  line-height: normal;
+}
+
+.receiver-profile-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.receiver-profile-tag {
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 15px;
+  letter-spacing: -0.24px;
+}
+
+.receiver-profile-badge {
+  margin: 14px 15px 0;
+  background: #ffdb5b;
+  border-radius: 10px;
+  padding: 14px 20px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #000;
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+
+.receiver-profile-btns {
+  display: flex;
+  gap: 12px;
+  padding: 14px 15px 10px;
+  flex-shrink: 0;
+}
+
+.receiver-btn-not-interested {
+  flex: 1;
+  height: 50px;
+  background: #fff;
+  border: 1.5px solid #000;
+  border-radius: 25px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  letter-spacing: -0.36px;
+  transition: background 0.15s ease;
+}
+
+.receiver-btn-not-interested:hover {
+  background: #f5f5f5;
+}
+
+.receiver-btn-match {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 50px;
+  background: #000;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: -0.36px;
+  transition: background 0.15s ease;
+}
+
+.receiver-btn-match:hover {
+  background: #222;
+}
+
+.receiver-profile-overlay .nav-bar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ===== Receiver Match Overlay ===== */
+.receiver-match-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #1a1a1a 0%, #2d2200 50%, #1a1a1a 100%);
+  z-index: 270;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  font-family: 'Albert Sans', sans-serif;
+}
+
+.receiver-match-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.receiver-match-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.receiver-match-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 30px;
+  text-align: center;
+}
+
+.receiver-match-avatars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.receiver-match-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffdb5b;
+  flex-shrink: 0;
+}
+
+.receiver-match-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.receiver-match-avatar--you {
+  z-index: 1;
+  margin-right: -24px;
+}
+
+.receiver-match-avatar--lily {
+  z-index: 2;
+  margin-left: -24px;
+}
+
+.receiver-match-overlay.active .receiver-match-avatars {
+  animation: avatarBounceIn 0.6s 0.2s both cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.receiver-match-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.72px;
+  margin: 0;
+  line-height: normal;
+}
+
+.receiver-match-overlay.active .receiver-match-title {
+  animation: textFadeUp 0.5s 0.4s both ease-out;
+}
+
+.receiver-match-sub {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  margin: -10px 0 0;
+  line-height: normal;
+}
+
+.receiver-match-overlay.active .receiver-match-sub {
+  animation: textFadeUp 0.5s 0.5s both ease-out;
+}
+
+.receiver-match-cta {
+  width: 100%;
+  height: 54px;
+  background: #ffdb5b;
+  border: none;
+  border-radius: 27px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  letter-spacing: -0.36px;
+  margin-top: 10px;
+  transition: background 0.15s ease;
+}
+
+.receiver-match-cta:hover {
+  background: #f5c800;
+}
+
+.receiver-match-overlay.active .receiver-match-cta {
+  animation: textFadeUp 0.5s 0.6s both ease-out;
+}
+
 /* ===== Chats Screen (Receiver POV) ===== */
 .chats-screen {
   position: absolute;
@@ -2361,6 +2658,16 @@
   transform: scale(1.08);
 }
 
+.ly-card-img-revealed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: none;
+  transform: scale(1);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
 .ly-reveal-btn {
   position: absolute;
   top: 50%;
@@ -2503,3 +2810,148 @@
   opacity: 1;
   transform: scale(1);
 }
+
+
+/* ===================================================
+   DELIGHT LAYER — Crossed Paths micro-interactions
+   =================================================== */
+
+/* --- Reveal shimmer sweep --- */
+.reveal-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 219, 91, 0.55) 50%,
+    transparent 80%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  animation: shimmerSweep 0.85s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes shimmerSweep {
+  from { transform: translateX(-120%) skewX(-12deg); }
+  to   { transform: translateX(220%)  skewX(-12deg); }
+}
+
+/* --- Card hover lift --- */
+.cp-person-card {
+  transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.22s ease;
+}
+.cp-person-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Reveal button heartbeat pulse --- */
+@keyframes revealPulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(255, 219, 91, 0.6); }
+  50%       { box-shadow: 0 0 0 10px rgba(255, 219, 91, 0);   }
+}
+.cp-reveal-button {
+  animation: revealPulse 2.2s ease-out infinite;
+}
+.cp-reveal-button:hover {
+  background: rgba(255, 255, 255, 0.72);
+  transform: scale(1.04);
+  animation: none;
+  box-shadow: 0 0 0 6px rgba(255, 219, 91, 0.35);
+}
+
+/* --- Tag hover pop --- */
+.cp-tag,
+.ly-tag,
+.receiver-profile-tag {
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+              background 0.15s ease;
+  cursor: default;
+}
+.cp-tag:hover,
+.ly-tag:hover,
+.receiver-profile-tag:hover {
+  transform: scale(1.07);
+  background: rgba(0, 0, 0, 0.68);
+}
+
+/* --- Location badge golden shine --- */
+.cp-card-location,
+.ly-card-badge,
+.receiver-profile-badge {
+  position: relative;
+  overflow: hidden;
+}
+.cp-card-location::after,
+.ly-card-badge::after,
+.receiver-profile-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 75%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  pointer-events: none;
+  animation: badgeShine 4.5s 1.2s ease-in-out infinite;
+}
+
+@keyframes badgeShine {
+  0%, 65%, 100% { transform: translateX(-120%) skewX(-12deg); }
+  35%            { transform: translateX(220%)  skewX(-12deg); }
+}
+
+/* --- Like-sent heart continuous heartbeat --- */
+@keyframes heartBeat {
+  0%,  45%, 100% { transform: scale(1);    }
+  15%             { transform: scale(1.18); }
+  30%             { transform: scale(1.04); }
+}
+.like-sent-overlay.active .like-sent-heart-badge {
+  animation:
+    heartPop  0.5s  0.6s  both     cubic-bezier(0.34, 1.56, 0.64, 1),
+    heartBeat 1.2s  1.3s  ease-in-out infinite;
+}
+
+/* --- Match screen avatar golden glow rings --- */
+@keyframes glowRing {
+  0%   { transform: scale(1);   opacity: 0.75; }
+  100% { transform: scale(1.6); opacity: 0;    }
+}
+.receiver-match-overlay.active .receiver-match-avatar--you,
+.receiver-match-overlay.active .receiver-match-avatar--lily {
+  animation: avatarBounceIn 0.6s 0.2s both cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.receiver-match-overlay.active .receiver-match-avatars::before,
+.receiver-match-overlay.active .receiver-match-avatars::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 219, 91, 0.7);
+  animation: glowRing 2s 1.0s ease-out infinite;
+  pointer-events: none;
+}
+.receiver-match-overlay.active .receiver-match-avatars::after {
+  animation-delay: 1.9s;
+}
+
+/* receiver-match-avatars needs position:relative for the rings */
+.receiver-match-avatars {
+  position: relative;
+}
+
+/* --- Ken Burns on Lily's profile photo --- */
+@keyframes kenBurns {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.06); }
+}
+.receiver-profile-overlay.active .receiver-profile-photo {
+  animation: kenBurns 12s ease-out forwards;
+}
+
