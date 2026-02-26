@@ -84,46 +84,67 @@
         </button>
         <!-- Bee illustration -->
         <div class="notif-illustration">
-          <svg width="290" height="101" viewBox="0 0 290 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Left bee -->
-            <g transform="translate(18, 20) rotate(-41, 27, 27)">
-              <!-- Body -->
-              <ellipse cx="27" cy="30" rx="14" ry="10" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
-              <!-- Stripes -->
-              <line x1="22" y1="23" x2="22" y2="37" stroke="#222" stroke-width="1.5"/>
-              <line x1="27" y1="21" x2="27" y2="39" stroke="#222" stroke-width="1.5"/>
-              <!-- Head -->
-              <circle cx="38" cy="28" r="6" fill="#222"/>
-              <!-- Wing top -->
-              <ellipse cx="22" cy="20" rx="8" ry="5" fill="white" stroke="#222" stroke-width="1"/>
-              <!-- Wing bottom -->
-              <ellipse cx="22" cy="36" rx="7" ry="4" fill="white" stroke="#222" stroke-width="1"/>
-              <!-- Antenna -->
-              <path d="M42 23 Q46 16 50 18" stroke="#222" stroke-width="1.2" fill="none"/>
-              <circle cx="50" cy="18" r="2" fill="#222"/>
-              <path d="M42 25 Q48 20 52 24" stroke="#222" stroke-width="1.2" fill="none"/>
-              <circle cx="52" cy="24" r="2" fill="#222"/>
+          <svg id="beeSvg" width="290" height="101" viewBox="0 0 290 101" fill="none"
+               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <!-- Left bee: dramatic S-wave, dips deep down then shoots back up, repeats -->
+              <path id="lpth" d="M18 22 C38 95 110 4 145 52 C180 98 248 10 272 80"/>
+              <!-- Right bee: sweeps up high on first leg, then arcs down more gently -->
+              <path id="rpth" d="M272 35 C258 4 188 4 145 52 C102 96 44 52 18 85"/>
+            </defs>
+
+            <!-- Flight trails (drawn progressively) -->
+            <path class="bee-trail" d="M18 22 C38 95 110 4 145 52 C180 98 248 10 272 80"
+                  stroke="#FFDB5B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path class="bee-trail" d="M272 35 C258 4 188 4 145 52 C102 96 44 52 18 85"
+                  stroke="#FFDB5B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+            <!-- Heart at crossing point — pops in when bees cross -->
+            <g transform="translate(145, 52)">
+              <g class="center-heart">
+                <g transform="translate(-44, -40.7) scale(4)">
+                  <path d="M11 19.35L9.55 18.03C4.4 13.36 1 10.28 1 6.5C1 3.42 3.42 1 6.5 1C8.24 1 9.91 1.81 11 3.09C12.09 1.81 13.76 1 15.5 1C18.58 1 21 3.42 21 6.5C21 10.28 17.6 13.36 12.45 18.04L11 19.35Z"
+                        fill="#FFDB5B"/>
+                </g>
+              </g>
             </g>
-            <!-- Curved flight path with heart -->
-            <path d="M75 40 Q100 80 130 50 Q140 35 145 42 Q150 35 160 50 Q190 80 215 40" stroke="#FFDB5B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- Right bee -->
-            <g transform="translate(230, 55) rotate(142, 27, 27)">
-              <!-- Body -->
-              <ellipse cx="27" cy="30" rx="14" ry="10" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
-              <!-- Stripes -->
-              <line x1="22" y1="23" x2="22" y2="37" stroke="#222" stroke-width="1.5"/>
-              <line x1="27" y1="21" x2="27" y2="39" stroke="#222" stroke-width="1.5"/>
-              <!-- Head -->
-              <circle cx="38" cy="28" r="6" fill="#222"/>
-              <!-- Wing top -->
-              <ellipse cx="22" cy="20" rx="8" ry="5" fill="white" stroke="#222" stroke-width="1"/>
-              <!-- Wing bottom -->
-              <ellipse cx="22" cy="36" rx="7" ry="4" fill="white" stroke="#222" stroke-width="1"/>
-              <!-- Antenna -->
-              <path d="M42 23 Q46 16 50 18" stroke="#222" stroke-width="1.2" fill="none"/>
-              <circle cx="50" cy="18" r="2" fill="#222"/>
-              <path d="M42 25 Q48 20 52 24" stroke="#222" stroke-width="1.2" fill="none"/>
-              <circle cx="52" cy="24" r="2" fill="#222"/>
+
+            <!-- LEFT BEE: centered at origin, head at +x, rotate="auto" orients to path -->
+            <g id="bee-left" opacity="0">
+              <ellipse cx="0" cy="0" rx="13" ry="9" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+              <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#222" stroke-width="1.5"/>
+              <line x1="1"  y1="-9" x2="1"  y2="9" stroke="#222" stroke-width="1.5"/>
+              <circle cx="16" cy="0" r="6" fill="#222"/>
+              <ellipse cx="-1" cy="-13" rx="9" ry="5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1"/>
+              <ellipse cx="-1" cy="13"  rx="9" ry="5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1"/>
+              <path d="M20 -5 Q24 -12 28 -10" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="28" cy="-10" r="1.8" fill="#222"/>
+              <path d="M20 -2 Q26 -8 30 -4"  stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="30" cy="-4"  r="1.8" fill="#222"/>
+              <animate class="bee-show" attributeName="opacity" from="0" to="1" begin="indefinite" dur="0.01s" fill="freeze"/>
+              <animateMotion class="bee-motion" dur="3.2s" begin="indefinite" fill="freeze"
+                             rotate="auto" calcMode="spline" keyTimes="0;1" keySplines="0.22 1 0.36 1">
+                <mpath xlink:href="#lpth"/>
+              </animateMotion>
+            </g>
+
+            <!-- RIGHT BEE: same, rotate="auto" flips it to face left along its path -->
+            <g id="bee-right" opacity="0">
+              <ellipse cx="0" cy="0" rx="13" ry="9" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+              <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#222" stroke-width="1.5"/>
+              <line x1="1"  y1="-9" x2="1"  y2="9" stroke="#222" stroke-width="1.5"/>
+              <circle cx="16" cy="0" r="6" fill="#222"/>
+              <ellipse cx="-1" cy="-13" rx="9" ry="5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1"/>
+              <ellipse cx="-1" cy="13"  rx="9" ry="5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1"/>
+              <path d="M20 -5 Q24 -12 28 -10" stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="28" cy="-10" r="1.8" fill="#222"/>
+              <path d="M20 -2 Q26 -8 30 -4"  stroke="#222" stroke-width="1.2" fill="none"/>
+              <circle cx="30" cy="-4"  r="1.8" fill="#222"/>
+              <animate class="bee-show" attributeName="opacity" from="0" to="1" begin="indefinite" dur="0.01s" fill="freeze"/>
+              <animateMotion class="bee-motion" dur="3.2s" begin="indefinite" fill="freeze"
+                             rotate="auto" calcMode="spline" keyTimes="0;1" keySplines="0.22 1 0.36 1">
+                <mpath xlink:href="#rpth"/>
+              </animateMotion>
             </g>
           </svg>
         </div>
@@ -270,9 +291,44 @@
 
   </div><!-- end phones-row -->
   <script>
-    // Show both notifications simultaneously
+    // Pre-measure trail paths for stroke-dashoffset animation
+    window.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.bee-trail').forEach(function(path) {
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+      });
+    });
+
     setTimeout(function() {
       document.getElementById('notifOverlay').classList.add('active');
+
+      // After modal entrance animation (~380ms), launch the bees
+      setTimeout(function() {
+        // Trigger SVG animateMotion + opacity on both bees
+        document.querySelectorAll('.bee-show, .bee-motion').forEach(function(el) {
+          el.beginElement();
+        });
+        // Trigger CSS trail draw via class
+        document.getElementById('beeSvg').classList.add('bee-flying');
+        // Pop the heart when bees cross center (~halfway through 3.2s flight)
+        setTimeout(function() {
+          document.querySelector('.center-heart').classList.add('heart-pop');
+          // Switch to pulse after pop animation completes
+          setTimeout(function() {
+            document.querySelector('.center-heart').classList.add('heart-pulse');
+          }, 450);
+        }, 1400);
+        // Fade bees and trails shortly after they cross (inline style beats CSS specificity)
+        setTimeout(function() {
+          var fadeAnim = 'beeFadeOut 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+          document.getElementById('bee-left').style.animation = fadeAnim;
+          document.getElementById('bee-right').style.animation = fadeAnim;
+          document.querySelectorAll('.bee-trail').forEach(function(el) {
+            el.style.animation = fadeAnim;
+          });
+        }, 1650);
+      }, 380);
     }, 2500);
 
     function closeNotification() {

@@ -423,3 +423,53 @@ body {
 .notif-button:hover {
   background: #ffe074;
 }
+
+/* ===== Bee animation ===== */
+.bee-trail {
+  /* stroke-dasharray/offset set by JS; fallback keeps trail hidden */
+  stroke-dashoffset: 300;
+}
+
+#beeSvg.bee-flying .bee-trail {
+  animation: beeTrailDraw 3.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes beeTrailDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+.center-heart {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+
+.center-heart.heart-pop {
+  animation: beeHeartPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.center-heart.heart-pulse {
+  opacity: 1;
+  animation: beeHeartPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes beeHeartPop {
+  0%   { opacity: 0; transform: scale(0); }
+  65%  { opacity: 1; transform: scale(1.35); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes beeHeartPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.18); }
+}
+
+.bee-fade {
+  animation: beeFadeOut 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes beeFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
