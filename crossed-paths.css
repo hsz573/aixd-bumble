@@ -436,7 +436,8 @@
   display: flex;
   gap: 15px;
   overflow-x: auto;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 20px;
 }
 
 .cp-cards-row::-webkit-scrollbar {
@@ -2844,7 +2845,7 @@
 }
 .cp-person-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 /* --- Reveal button heartbeat pulse --- */
