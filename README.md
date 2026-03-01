@@ -123,11 +123,42 @@ This project focuses on designing and implementing a user interface improvement 
 
 **Figma Designs:** [AIXD Project 2](https://www.figma.com/design/I5ZpdUYMiBcSPUeH2jv6My/AIXD-Project-2)
 
+### Prototype Flow
+
+The prototype is split across two pages. Start on `index.html` and follow the in-page guide panel for the full walkthrough.
+
+**Sender POV** (your perspective as someone who crossed paths with Mark):
+1. Complete onboarding (3 screens + iOS location permission popup)
+2. Land on the Discover page — a Crossed Paths notification appears after a short delay
+3. Tap the Crossed Paths widget to enter the feature
+4. View your match (Mark) and a blurred potential match
+5. Open Mark's profile → tap **Message** → send a move in the chat overlay
+6. Return to Crossed Paths → tap the potential match → like them
+
+**Receiver POV** (Mark's perspective — right phone):
+7. Mark's Liked You tab shows the sender as a new match from Crossed Paths
+8. Tap the peek card to reveal and open the sender's profile
+9. Tap **Message** in the receiver chat to complete the match flow
+
 ### Screens Implemented
 
-1. **Discover Entry** (`index.html`) — Main Bumble discover page with the Crossed Paths widget and horizontally scrollable recommended profiles
-2. **Crossed Paths List View** (`crossed-paths.html`) — Shows matched and potential matched users you've crossed paths with, organized by Matches (clear photos) and Potential Matches (blurred photos with "Click to Reveal")
-3. **Profile Overlay** (within `crossed-paths.html`) — Expanded profile view for a match (Mark), featuring interest tags, crossed paths location, and a Message button. Opens with a smooth slide-up animation
+**`index.html`**
+- **Onboarding flow** — 3-screen fate-themed intro with an iOS location permission popup (fires when "Turn On Crossed Paths" is tapped)
+- **Discover page** — Crossed Paths widget + horizontally scrollable recommended profiles + animated notification popup with bee trail
+
+**`crossed-paths.html`** (two-phone side-by-side layout)
+
+*Sender POV (left phone):*
+- **Crossed Paths list** — Matches section (clear photos) and Potential Matches section (blurred "Click to Reveal" cards)
+- **Mark's profile overlay** — Interest tags, crossed paths location, full-width yellow Message CTA pinned to the bottom
+- **Chat overlay** — Send a move to Mark; sent message bubble appears on send
+- **Potential match profile overlay** — Like / Not Interested actions; liking triggers a match
+
+*Receiver POV (right phone):*
+- **Liked You tab** — Empty state until the sender likes; then shows the sender as a Crossed Paths match with a peek card
+- **Receiver profile overlay** — Full-screen profile view of the sender
+- **Receiver chat** — Mirrors the conversation from the sender POV
+- **Match overlay** — Animated bee + heart celebration on match
 
 ### Running Locally
 
@@ -137,7 +168,7 @@ Open `index.html` in any browser — no server or dependencies required.
 
 **Current Phase:** Prototype Implementation
 
-**Last Updated:** February 17, 2026
+**Last Updated:** March 1, 2026
 
 ---
 
