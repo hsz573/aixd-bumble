@@ -15,6 +15,169 @@
   <div class="phone-pov">
     <span class="pov-label">Sender POV</span>
   <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span class="status-bar-time">9:41</span>
+      <div class="status-bar-icons">
+        <div class="sb-signal"><span></span><span></span><span></span><span></span></div>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <circle cx="8" cy="11" r="1.2" fill="#000"/>
+          <path d="M5.2 8.3C6 7.4 6.9 7 8 7s2 .4 2.8 1.3" stroke="#000" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M2.8 5.8C4.1 4.3 6 3.5 8 3.5s3.9.8 5.2 2.3" stroke="#000" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <div class="sb-battery">
+          <div class="sb-battery-body"><div class="sb-battery-fill"></div></div>
+          <div class="sb-battery-nub"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════
+         Onboarding Flow
+         ═══════════════════════════════ -->
+    <div class="ob-overlay" id="obOverlay">
+
+      <!-- Progress dots -->
+      <div class="ob-progress">
+        <div class="ob-dot ob-dot--active" id="obDot1"></div>
+        <div class="ob-dot" id="obDot2"></div>
+        <div class="ob-dot" id="obDot3"></div>
+      </div>
+
+      <!-- ── Screen 1: What is Crossed Paths ── -->
+      <div class="ob-screen ob-screen--active" id="obScreen1">
+        <div class="ob-illustration">
+          <svg width="320" height="200" viewBox="0 0 320 200" fill="none">
+            <!-- Gray dashed path (bottom-left to top-right) -->
+            <path d="M20 175 C80 175 145 28 300 22" stroke="#E0E0E0" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 7" fill="none"/>
+            <!-- Yellow dashed path (top-left to bottom-right) -->
+            <path d="M20 22 C80 22 145 175 300 175" stroke="#FFDB5B" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 7" fill="none"/>
+            <!-- Glow at crossing -->
+            <circle cx="160" cy="99" r="36" fill="#FFDB5B" opacity="0.12"/>
+            <circle cx="160" cy="99" r="22" fill="#FFDB5B" opacity="0.25"/>
+            <!-- Bee body -->
+            <ellipse cx="160" cy="99" rx="15" ry="10" fill="#FFDB5B" stroke="#222" stroke-width="1.8"/>
+            <!-- Stripes -->
+            <line x1="153" y1="90.5" x2="153" y2="107.5" stroke="#222" stroke-width="1.5"/>
+            <line x1="160" y1="89.5" x2="160" y2="108.5" stroke="#222" stroke-width="1.5"/>
+            <!-- Head -->
+            <circle cx="172" cy="99" r="7" fill="#222"/>
+            <!-- Wings -->
+            <ellipse cx="156" cy="86" rx="11" ry="6" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1.2"/>
+            <ellipse cx="156" cy="112" rx="11" ry="6" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="1.2"/>
+            <!-- Antennae -->
+            <path d="M177 93 Q184 84 189 82" stroke="#222" stroke-width="1.3" fill="none"/>
+            <circle cx="189" cy="82" r="2.2" fill="#222"/>
+            <path d="M177 95 Q185 88 190 90" stroke="#222" stroke-width="1.3" fill="none"/>
+            <circle cx="190" cy="90" r="2.2" fill="#222"/>
+            <!-- Person dots at path ends -->
+            <circle cx="20" cy="175" r="7" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+            <circle cx="300" cy="175" r="7" fill="#E0E0E0" stroke="#bbb" stroke-width="1.5"/>
+            <circle cx="20" cy="22" r="7" fill="#E0E0E0" stroke="#bbb" stroke-width="1.5"/>
+            <circle cx="300" cy="22" r="7" fill="#FFDB5B" stroke="#222" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="ob-content">
+          <h2 class="ob-title">You've probably already crossed paths with your next match</h2>
+          <p class="ob-desc">At the coffee shop last Tuesday. The gym on Sunday. That market you stumbled into. Crossed Paths introduces you after the moment has passed — but not the chance.</p>
+        </div>
+        <div class="ob-actions">
+          <button class="ob-btn-primary" onclick="obNext(1)">Get Started</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 2: Location permission ── -->
+      <div class="ob-screen" id="obScreen2">
+        <div class="ob-illustration">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+            <!-- Pulse rings -->
+            <circle cx="100" cy="100" r="88" stroke="#FFDB5B" stroke-width="1.5" fill="none" opacity="0.2"/>
+            <circle cx="100" cy="100" r="66" stroke="#FFDB5B" stroke-width="1.5" fill="none" opacity="0.35"/>
+            <circle cx="100" cy="100" r="44" fill="#FFDB5B" opacity="0.12"/>
+            <!-- Pin body -->
+            <path d="M100 16 C76 16 56 36 56 60 C56 90 100 138 100 138 C100 138 144 90 144 60 C144 36 124 16 100 16 Z" fill="#FFDB5B" stroke="#222" stroke-width="2"/>
+            <!-- Inner circle -->
+            <circle cx="100" cy="58" r="20" fill="#fff"/>
+            <!-- Bee in pin -->
+            <ellipse cx="100" cy="58" rx="10" ry="6.8" fill="#FFDB5B" stroke="#222" stroke-width="1.3"/>
+            <line x1="95" y1="52" x2="95" y2="64" stroke="#222" stroke-width="1.2"/>
+            <line x1="100" y1="51.5" x2="100" y2="64.5" stroke="#222" stroke-width="1.2"/>
+            <circle cx="108.5" cy="58" r="5" fill="#222"/>
+            <ellipse cx="97" cy="50" rx="7" ry="3.5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="0.9"/>
+            <ellipse cx="97" cy="66" rx="7" ry="3.5" fill="rgba(255,255,255,0.9)" stroke="#222" stroke-width="0.9"/>
+            <!-- Ground shadow -->
+            <ellipse cx="100" cy="148" rx="18" ry="5" fill="#FFDB5B" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="ob-content">
+          <h2 class="ob-title">One thing, upfront</h2>
+          <div class="ob-features">
+            <div class="ob-feature">
+              <div class="ob-feature-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#000" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#000" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.5" fill="#000"/></svg>
+              </div>
+              <div>
+                <p class="ob-feature-title">Background access required</p>
+                <p class="ob-feature-desc">"While Using App" won't work — Bumble can only catch those almost-moments when it can check your location in the background.</p>
+              </div>
+            </div>
+            <div class="ob-feature">
+              <div class="ob-feature-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s-9-4-9-10V6l9-4 9 4v6c0 6-9 10-9 10z" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="ob-feature-title">Your exact location stays private</p>
+                <p class="ob-feature-desc">Matches never see where you are. Only area overlap is detected — then discarded.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-actions">
+          <button class="ob-btn-primary" onclick="obNext(2)">Got it</button>
+        </div>
+      </div>
+
+      <!-- ── iOS Location Permission Popup ── -->
+      <div class="ob-ios-popup" id="obIosPopup">
+        <div class="ob-ios-dialog">
+          <div class="ob-ios-content">
+            <p class="ob-ios-title">Allow "Bumble" to access your location?</p>
+            <p class="ob-ios-body">Your location is used to find Bumble members you've been near. Crossed Paths needs background access — select <strong>"Always Allow"</strong> for this to work.</p>
+          </div>
+          <div class="ob-ios-separator"></div>
+          <div class="ob-ios-buttons">
+            <button class="ob-ios-btn ob-ios-btn--cancel" onclick="obIosChoice(false)">Never</button>
+            <div class="ob-ios-btn-divider"></div>
+            <button class="ob-ios-btn ob-ios-btn--confirm" onclick="obIosChoice(true)">Always Allow</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Screen 3: Your moments, your rules ── -->
+      <div class="ob-screen" id="obScreen3">
+        <div class="ob-illustration ob-illustration--settings">
+          <div class="ob-settings-card">
+            <div class="ob-settings-row">
+              <div class="ob-settings-row-info">
+                <span class="ob-settings-row-title">Crossed Paths</span>
+                <span class="ob-settings-row-sub">Share location for matching</span>
+              </div>
+              <div class="ob-toggle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-content">
+          <h2 class="ob-title">Your moments, your rules</h2>
+          <p class="ob-desc">Turn Crossed Paths off any time from Settings. Your location access stops immediately — no traces left behind.</p>
+          <p class="ob-privacy-note">Your data is only used to find nearby matches and is never sold or shared with third parties.</p>
+        </div>
+        <div class="ob-actions">
+          <button class="ob-btn-primary" onclick="obShowLocationPopup()">Turn On Crossed Paths</button>
+        </div>
+      </div>
+
+    </div><!-- end ob-overlay -->
+
     <!-- Header -->
     <div class="header">
       <h1 class="header-title">Discover</h1>
@@ -290,7 +453,83 @@
   </div><!-- end receiver phone-pov -->
 
   </div><!-- end phones-row -->
+
+  <!-- ── Prototype Instructions ── -->
+  <aside class="proto-guide">
+    <div class="proto-guide-header">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#000" stroke-width="1.8"/><path d="M12 8v1M12 11v5" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Prototype Guide</span>
+    </div>
+
+    <p class="proto-guide-intro">The <strong>Sender POV</strong> drives the flow. The <strong>Receiver POV</strong> updates reactively to show the other side.</p>
+
+    <ol class="proto-steps">
+      <li class="proto-step">
+        <div class="proto-step-num">1</div>
+        <div>
+          <p class="proto-step-title">Complete the onboarding</p>
+          <p class="proto-step-desc">You're here. Finish the onboarding flow — it triggers a notification on the Crossed Paths widget.</p>
+        </div>
+      </li>
+      <li class="proto-step">
+        <div class="proto-step-num">2</div>
+        <div>
+          <p class="proto-step-title">Enter Crossed Paths</p>
+          <p class="proto-step-desc">Tap the yellow widget on the Discover screen to navigate to <code>crossed-paths.html</code>.</p>
+        </div>
+      </li>
+      <li class="proto-step">
+        <div class="proto-step-num">3</div>
+        <div>
+          <p class="proto-step-title">Message your crossed paths match</p>
+          <p class="proto-step-desc">Open the chat with the match you crossed paths with and send a message — it appears in the receiver's chat list.</p>
+        </div>
+      </li>
+      <li class="proto-step">
+        <div class="proto-step-num">4</div>
+        <div>
+          <p class="proto-step-title">Like a potential match</p>
+          <p class="proto-step-desc">Tap a card → open the profile → tap <strong>Like</strong>. A dot appears on the receiver's Liked You tab.</p>
+        </div>
+      </li>
+      <li class="proto-step">
+        <div class="proto-step-num">5</div>
+        <div>
+          <p class="proto-step-title">Match from the receiver</p>
+          <p class="proto-step-desc">On the receiver, tap <strong>Liked You</strong> → reveal → tap <strong>Match</strong> to see the match screen.</p>
+        </div>
+      </li>
+    </ol>
+
+  </aside>
+
   <script>
+    // ── Onboarding ──
+    function obNext(n) {
+      var cur = document.getElementById('obScreen' + n);
+      var nxt = document.getElementById('obScreen' + (n + 1));
+      var curDot = document.getElementById('obDot' + n);
+      var nxtDot = document.getElementById('obDot' + (n + 1));
+      cur.classList.remove('ob-screen--active');
+      cur.classList.add('ob-screen--exit');
+      nxt.classList.add('ob-screen--active');
+      curDot.classList.remove('ob-dot--active');
+      nxtDot.classList.add('ob-dot--active');
+    }
+    function obFinish() {
+      var overlay = document.getElementById('obOverlay');
+      overlay.classList.add('ob-done');
+      // Wait for the fade-out to complete, then trigger the notification
+      setTimeout(triggerNotification, 2000);
+    }
+    function obShowLocationPopup() {
+      document.getElementById('obIosPopup').classList.add('ob-ios-popup--visible');
+    }
+    function obIosChoice(allowed) {
+      document.getElementById('obIosPopup').classList.remove('ob-ios-popup--visible');
+      obFinish();
+    }
+
     // Pre-measure trail paths for stroke-dashoffset animation
     window.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.bee-trail').forEach(function(path) {
@@ -300,7 +539,7 @@
       });
     });
 
-    setTimeout(function() {
+    function triggerNotification() {
       document.getElementById('notifOverlay').classList.add('active');
 
       // After modal entrance animation (~380ms), launch the bees
@@ -329,7 +568,7 @@
           });
         }, 1650);
       }, 380);
-    }, 2500);
+    }
 
     function closeNotification() {
       document.getElementById('notifOverlay').classList.remove('active');

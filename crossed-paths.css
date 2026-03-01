@@ -1,5 +1,94 @@
 /* Crossed Paths Page Styles */
 
+/* ── Prototype Guide Panel ── */
+.proto-guide {
+  width: 290px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 38px;
+  margin-left: 36px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+  padding: 20px;
+  font-family: 'Albert Sans', sans-serif;
+}
+
+.proto-guide-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.proto-guide-intro {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.proto-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.proto-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.proto-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FFDB5B;
+  font-size: 12px;
+  font-weight: 700;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.proto-step-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.1px;
+  margin-bottom: 3px;
+}
+
+.proto-step-desc {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+}
+
+.proto-step-desc code {
+  font-family: monospace;
+  font-size: 11px;
+  background: #f5f5f5;
+  padding: 1px 4px;
+  border-radius: 3px;
+  color: #333;
+}
+
+
 /* ── Receiver POV: Lock Screen (pure CSS, no external assets) ── */
 .lock-screen {
   position: absolute;
@@ -910,13 +999,13 @@
 /* Message Button */
 .profile-message-button {
   position: absolute;
-  top: 729px;
-  left: 54px;
-  width: 184px;
-  height: 50px;
-  background: #fff;
+  bottom: 30px;
+  left: 25px;
+  right: 25px;
+  height: 56px;
+  background: #ffdb5b;
   border: none;
-  border-radius: 25px;
+  border-radius: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -932,7 +1021,7 @@
 }
 
 .profile-message-button:hover {
-  background: #f0f0f0;
+  background: #ffe074;
 }
 
 /* Action Buttons (Like / Not Interested) */
@@ -1075,10 +1164,10 @@
 }
 
 .chat-profile-location {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  color: #000;
-  letter-spacing: -0.32px;
+  color: #555;
+  letter-spacing: -0.2px;
   line-height: normal;
 }
 
@@ -2572,17 +2661,26 @@
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
 }
 
 .liked-you-screen.active {
   transform: translateX(0);
 }
 
+.liked-you-screen > .nav-bar {
+  position: relative;
+  bottom: auto;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
 .ly-header {
-  position: absolute;
-  top: 54px;
-  left: 25px;
-  width: 391px;
+  position: relative;
+  flex-shrink: 0;
+  padding: 54px 25px 15px;
+  width: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -2616,16 +2714,25 @@
   line-height: 1.4;
 }
 
+.ly-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.ly-scroll-content::-webkit-scrollbar {
+  display: none;
+}
+
 .ly-matches-section {
-  position: absolute;
-  top: 165px;
-  left: 0;
-  width: 430px;
+  position: relative;
+  width: 100%;
   background: #fff1bf;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  flex-shrink: 0;
 }
 
 .ly-matches-title {
@@ -2633,6 +2740,19 @@
   font-weight: 600;
   color: #000;
   letter-spacing: -0.4px;
+}
+
+.ly-empty-state {
+  padding: 20px 25px;
+  border-radius: 15px;
+}
+
+.ly-empty-text {
+  font-size: 14px;
+  font-style: italic;
+  color: #777676;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
 }
 
 .ly-match-cards {
@@ -2700,6 +2820,15 @@
   letter-spacing: -0.32px;
   cursor: pointer;
   white-space: nowrap;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ly-reveal-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ly-reveal-btn:active {
+  transform: translate(-50%, -50%) scale(0.97);
 }
 
 .ly-card-name {
@@ -2752,11 +2881,11 @@
 }
 
 .ly-chips {
-  position: absolute;
-  top: 737px;
-  left: 20px;
+  position: relative;
+  padding: 18px 20px 10px;
   display: flex;
   gap: 9px;
+  flex-shrink: 0;
   align-items: center;
 }
 
@@ -2788,21 +2917,19 @@
 }
 
 .ly-peek-card {
-  position: absolute;
-  top: 806px;
-  left: 20px;
-  width: 390px;
-  height: 100px;
+  position: relative;
+  margin: 0 20px 20px;
+  width: calc(100% - 40px);
+  height: 420px;
   border-radius: 20px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .ly-peek-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(15px);
-  transform: scale(1.08);
   border-radius: 20px;
 }
 
@@ -2977,7 +3104,7 @@
 .ob-overlay {
   position: absolute;
   inset: 0;
-  z-index: 550;
+  z-index: 650;
   overflow: hidden;
   background: #fff;
 }

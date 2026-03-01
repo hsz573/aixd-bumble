@@ -13,6 +13,7 @@ body {
   min-height: 100vh;
   padding: 50px 40px;
   overflow: auto;
+  gap: 0;
 }
 
 /* Two-phone side-by-side layout */
@@ -51,6 +52,77 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   transform: scale(0.75);
   transform-origin: center top;
+}
+
+/* ── App Status Bar ── */
+.status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  z-index: 600;
+  pointer-events: none;
+}
+
+.status-bar-time {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.3px;
+}
+
+.status-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sb-signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.sb-signal span {
+  display: block;
+  width: 3px;
+  background: #000;
+  border-radius: 1px;
+}
+.sb-signal span:nth-child(1) { height: 30%; }
+.sb-signal span:nth-child(2) { height: 52%; }
+.sb-signal span:nth-child(3) { height: 74%; }
+.sb-signal span:nth-child(4) { height: 100%; }
+
+.sb-battery {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.sb-battery-body {
+  width: 22px;
+  height: 11px;
+  border: 1.5px solid rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  padding: 2px;
+}
+.sb-battery-fill {
+  width: 65%;
+  height: 100%;
+  background: #000;
+  border-radius: 1px;
+}
+.sb-battery-nub {
+  width: 2px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0 1px 1px 0;
 }
 
 /* Header */
@@ -203,6 +275,7 @@ body {
   overflow-x: auto;
   padding-right: 25px;
   padding-bottom: 10px;
+  scrollbar-width: none;
 }
 
 .recommended-cards::-webkit-scrollbar {
