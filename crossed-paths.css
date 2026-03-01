@@ -6,6 +6,7 @@
   inset: 0;
   overflow: hidden;
   font-family: 'Albert Sans', sans-serif;
+  z-index: 650;
   /* iOS-style gradient wallpaper */
   background: linear-gradient(165deg,
     #e8b0a8 0%,
@@ -1480,11 +1481,24 @@
   justify-content: space-between;
 }
 
+.settings-cp-toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .settings-cp-toggle-label {
   font-size: 18px;
   font-weight: 700;
   color: #000;
   letter-spacing: -0.36px;
+}
+
+.settings-cp-toggle-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.15px;
 }
 
 /* Toggle switch */
@@ -2954,5 +2968,370 @@
 }
 .receiver-profile-overlay.active .receiver-profile-photo {
   animation: kenBurns 12s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════
+   Onboarding Flow
+═══════════════════════════════════════════════ */
+
+.ob-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 550;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ob-overlay.ob-done {
+  pointer-events: none;
+  animation: obFadeOut 0.35s ease forwards;
+}
+
+@keyframes obFadeOut {
+  to { opacity: 0; }
+}
+
+/* Progress dots */
+.ob-progress {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ob-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: #e0e0e0;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ob-dot--active {
+  width: 22px;
+  background: #FFDB5B;
+}
+
+/* Individual screens */
+.ob-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ob-screen--active {
+  transform: translateX(0);
+}
+
+.ob-screen--exit {
+  transform: translateX(-110%);
+}
+
+/* Illustration */
+.ob-illustration {
+  padding-top: 82px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ob-illustration--settings {
+  padding-top: 90px;
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
+/* Content */
+.ob-content {
+  flex: 1;
+  padding: 22px 36px 0;
+  overflow: hidden;
+}
+
+.ob-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.ob-desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.6;
+  letter-spacing: -0.15px;
+}
+
+/* Feature list — screen 2 */
+.ob-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ob-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.ob-feature-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #FFFBEA;
+  border: 1.5px solid #F0E8C0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ob-feature-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.2px;
+  margin-bottom: 3px;
+}
+
+.ob-feature-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: #777;
+  line-height: 1.45;
+  letter-spacing: -0.1px;
+}
+
+/* Privacy note — screen 3 */
+.ob-privacy-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #bbb;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+}
+
+/* Actions */
+.ob-actions {
+  padding: 16px 36px 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ob-btn-primary {
+  width: 100%;
+  height: 56px;
+  background: #FFDB5B;
+  border: none;
+  border-radius: 28px;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ob-btn-primary:hover { background: #FFE474; }
+.ob-btn-primary:active { transform: scale(0.98); }
+
+.ob-btn-ghost {
+  width: 100%;
+  height: 44px;
+  background: none;
+  border: none;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #aaa;
+  cursor: pointer;
+  letter-spacing: -0.1px;
+  transition: color 0.15s ease;
+}
+
+.ob-btn-ghost:hover { color: #777; }
+
+/* Settings card — screen 3 illustration */
+.ob-settings-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid #EBEBEB;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.ob-settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+
+.ob-settings-row + .ob-settings-row {
+  border-top: 1px solid #F4F4F4;
+}
+
+.ob-settings-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ob-settings-row-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.2px;
+}
+
+.ob-settings-row-sub {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: -0.1px;
+}
+
+/* Toggle — highlighted ON state */
+.ob-toggle {
+  width: 50px;
+  height: 28px;
+  border-radius: 14px;
+  background: #FFDB5B;
+  position: relative;
+  flex-shrink: 0;
+  animation: obToggleGlow 2.2s ease-in-out infinite;
+}
+
+.ob-toggle::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+@keyframes obToggleGlow {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(255, 219, 91, 0); }
+  50%       { box-shadow: 0 0 0 6px rgba(255, 219, 91, 0.35); }
+}
+
+/* ── iOS Location Permission Popup ── */
+.ob-ios-popup {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ob-ios-popup.ob-ios-popup--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ob-ios-dialog {
+  width: 270px;
+  background: rgba(242, 242, 247, 0.97);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.ob-ios-content {
+  padding: 20px 16px 16px;
+}
+
+.ob-ios-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  letter-spacing: -0.2px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.ob-ios-body {
+  font-size: 13px;
+  font-weight: 400;
+  color: #3c3c43;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.ob-ios-body strong {
+  font-weight: 600;
+}
+
+.ob-ios-separator {
+  height: 0.5px;
+  background: rgba(60, 60, 67, 0.36);
+}
+
+.ob-ios-buttons {
+  display: flex;
+  height: 44px;
+}
+
+.ob-ios-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 17px;
+  color: #007AFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s ease;
+}
+
+.ob-ios-btn:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.ob-ios-btn--cancel {
+  font-weight: 400;
+}
+
+.ob-ios-btn--confirm {
+  font-weight: 600;
+}
+
+.ob-ios-btn-divider {
+  width: 0.5px;
+  background: rgba(60, 60, 67, 0.36);
+  align-self: stretch;
 }
 
