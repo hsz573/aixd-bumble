@@ -137,18 +137,21 @@
         </div>
       </div>
 
-      <!-- ── iOS Location Permission Popup ── -->
-      <div class="ob-ios-popup" id="obIosPopup">
-        <div class="ob-ios-dialog">
-          <div class="ob-ios-content">
-            <p class="ob-ios-title">Allow "Bumble" to access your location?</p>
-            <p class="ob-ios-body">Your location is used to find Bumble members you've been near. Crossed Paths needs background access — select <strong>"Always Allow"</strong> for this to work.</p>
+      <!-- ── Android Location Permission Bottom Sheet ── -->
+      <div class="ob-android-popup" id="obIosPopup">
+        <div class="ob-android-sheet">
+          <div class="ob-android-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="10" fill="#FFD800"/>
+              <text x="18" y="26" font-size="22" text-anchor="middle" font-family="serif">🐝</text>
+            </svg>
           </div>
-          <div class="ob-ios-separator"></div>
-          <div class="ob-ios-buttons">
-            <button class="ob-ios-btn ob-ios-btn--cancel" onclick="obIosChoice(false)">Never</button>
-            <div class="ob-ios-btn-divider"></div>
-            <button class="ob-ios-btn ob-ios-btn--confirm" onclick="obIosChoice(true)">Always Allow</button>
+          <p class="ob-android-title">Allow Bumble to access this device's location?</p>
+          <p class="ob-android-body">Your location is used to find people you've been near. Crossed Paths requires background access to work.</p>
+          <div class="ob-android-buttons">
+            <button class="ob-android-btn ob-android-btn--primary" onclick="obIosChoice(true)">Allow all the time</button>
+            <button class="ob-android-btn ob-android-btn--secondary" onclick="obIosChoice(true)">Allow only while using the app</button>
+            <button class="ob-android-btn ob-android-btn--deny" onclick="obIosChoice(false)">Don't allow</button>
           </div>
         </div>
       </div>

@@ -3364,101 +3364,110 @@
   50%       { box-shadow: 0 0 0 6px rgba(255, 219, 91, 0.35); }
 }
 
-/* ── iOS Location Permission Popup ── */
-.ob-ios-popup {
+/* ── Android Location Permission Bottom Sheet ── */
+.ob-android-popup {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 700;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
-.ob-ios-popup.ob-ios-popup--visible {
+.ob-android-popup.ob-ios-popup--visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.ob-ios-dialog {
-  width: 270px;
-  background: rgba(242, 242, 247, 0.97);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+.ob-android-popup.ob-ios-popup--visible .ob-android-sheet {
+  transform: translateY(0);
 }
 
-.ob-ios-content {
-  padding: 20px 16px 16px;
+.ob-android-sheet {
+  width: 100%;
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ob-ios-title {
-  font-size: 17px;
+.ob-android-icon {
+  margin-bottom: 4px;
+}
+
+.ob-android-title {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 18px;
   font-weight: 600;
-  color: #000;
-  text-align: center;
-  letter-spacing: -0.2px;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  color: #1c1b1f;
+  letter-spacing: -0.3px;
+  line-height: 1.35;
 }
 
-.ob-ios-body {
+.ob-android-body {
+  font-family: 'Albert Sans', sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: #3c3c43;
-  text-align: center;
-  line-height: 1.4;
-  letter-spacing: -0.1px;
+  color: #49454f;
+  line-height: 1.5;
 }
 
-.ob-ios-body strong {
-  font-weight: 600;
-}
-
-.ob-ios-separator {
-  height: 0.5px;
-  background: rgba(60, 60, 67, 0.36);
-}
-
-.ob-ios-buttons {
+.ob-android-buttons {
   display: flex;
-  height: 44px;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
 }
 
-.ob-ios-btn {
-  flex: 1;
-  background: none;
+.ob-android-btn {
+  width: 100%;
+  height: 52px;
   border: none;
+  border-radius: 26px;
   font-family: 'Albert Sans', sans-serif;
-  font-size: 17px;
-  color: #007AFF;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.1s ease;
+  letter-spacing: 0.1px;
+  transition: background 0.15s ease, opacity 0.15s ease;
 }
 
-.ob-ios-btn:active {
-  background: rgba(0, 0, 0, 0.08);
+.ob-android-btn--primary {
+  background: #1c1b1f;
+  color: #fff;
 }
 
-.ob-ios-btn--cancel {
-  font-weight: 400;
+.ob-android-btn--primary:hover {
+  background: #3a3842;
 }
 
-.ob-ios-btn--confirm {
+.ob-android-btn--secondary {
+  background: #e8e0f0;
+  color: #1c1b1f;
+}
+
+.ob-android-btn--secondary:hover {
+  background: #ddd5e8;
+}
+
+.ob-android-btn--deny {
+  background: none;
+  color: #6750a4;
   font-weight: 600;
 }
 
-.ob-ios-btn-divider {
-  width: 0.5px;
-  background: rgba(60, 60, 67, 0.36);
-  align-self: stretch;
+.ob-android-btn--deny:hover {
+  background: rgba(103, 80, 164, 0.08);
 }
 
